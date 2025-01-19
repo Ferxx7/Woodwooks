@@ -1,281 +1,295 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wood Wooks</title>
-    <style>
-        /* General */
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Sofia Pro', sans-serif;
-            background-color: #000000;
-            color: #CB996D;
-        }
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Wood Wooks</title>
+        <style>
+            /* General */
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: 'Sofia Pro', sans-serif;
+                background-color: #000000;
+                color: #CB996D;
+            }
 
-        /* Loader */
-        #loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #FFFFFF;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
+            /* Loader */
+            #loader {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: #FFFFFF;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 1000;
+            }
 
-        #loader img {
-            width: 200px;
-            height: auto;
-            animation: fade 2s infinite;
-        }
+            #loader img {
+                width: 200px;
+                height: auto;
+                animation: fade 2s infinite;
+            }
 
-        @keyframes fade {
-            0%, 100% {
+            @keyframes fade {
+                0%, 100% {
+                    opacity: 0;
+                }
+                50% {
+                    opacity: 1;
+                }
+            }
+
+            /* Ocultar el loader después de cargar */
+            #loader.hidden {
                 opacity: 0;
+                visibility: hidden;
+                transition: opacity 0.5s ease;
             }
-            50% {
-                opacity: 1;
+
+            /* Página principal */
+            .main-content {
+                display: none;
             }
-        }
 
-        /* Ocultar el loader después de cargar */
-        #loader.hidden {
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.5s ease;
-        }
+            .main-content.show {
+                display: block;
+            }
 
-        /* Página principal */
-        .main-content {
-            display: none;
-        }
-
-        .main-content.show {
-            display: block;
-        }
-
-        /* Header */
-        header {
-            background-color: #000000;
-            color: #FFFFFF;
-            padding: 10px 20px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        header a {
-            text-decoration: none;
-        }
-
-        header img {
-            width: 100px;
-            height: 45px;
-            margin-bottom: 0;
-        }
-
-        nav {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-top: 0;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #FFFFFF;
-            font-size: 18px;
-            font-weight: bold;
-            position: relative;
-            transition: color 0.3s, text-shadow 0.3s;
-        }
-
-        nav a:hover {
-            color: #FFFFFF;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-        }
-
-        .service-button {
-            padding: 10px 20px;
-            background: linear-gradient(45deg, #CB996D, #A67A50);
-            color: #000;
-            border: none;
-            font-size: 16px;
-            font-family: 'Sofia Pro', sans-serif;
-            font-weight: bold;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: background 0.3s, transform 0.2s;
-            margin-left: auto;
-            order: 2;
-        }
-
-        .service-button:hover {
-            background: linear-gradient(45deg, #A67A50, #CB996D);
-            color: #FFFFFF;
-            transform: scale(1.05);
-        }
-
-        /* Responsive Header for Mobile */
-        @media (max-width: 768px) {
+            /* Header */
             header {
-                flex-direction: column;
+                background-color: #000000;
+                color: #FFFFFF;
+                padding: 10px 20px;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
                 align-items: center;
             }
 
+            header a {
+                text-decoration: none;
+            }
+
+            header img {
+                width: 100px;
+                height: 45px;
+                margin-bottom: 0;
+            }
+
             nav {
-                order: 1;
-                margin-top: 10px;
+                display: flex;
+                gap: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+                margin-top: 0;
+            }
+
+            nav a {
+                text-decoration: none;
+                color: #FFFFFF;
+                font-size: 18px;
+                font-weight: bold;
+                position: relative;
+                transition: color 0.3s, text-shadow 0.3s;
+            }
+
+            nav a:hover {
+                color: #FFFFFF;
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
             }
 
             .service-button {
-                margin: 10px 0 0 0;
-                order: 3;
+                padding: 10px 20px;
+                background: linear-gradient(45deg, #CB996D, #A67A50);
+                color: #000;
+                border: none;
+                font-size: 16px;
+                font-family: 'Sofia Pro', sans-serif;
+                font-weight: bold;
+                border-radius: 30px;
+                cursor: pointer;
+                transition: background 0.3s, transform 0.2s;
+                margin-left: auto;
+                order: 2;
             }
-        }
 
-        /* Main Section */
-        .main-section {
-            display: flex;
-            flex-direction: column-reverse;
-            height: calc(100vh - 80px);
-        }
+            .service-button:hover {
+                background: linear-gradient(45deg, #A67A50, #CB996D);
+                color: #FFFFFF;
+                transform: scale(1.05);
+            }
 
-        @media (min-width: 768px) {
+            /* Responsive Header for Mobile */
+            @media (max-width: 768px) {
+                header {
+                    flex-direction: column;
+                    align-items: center;
+                }
+
+                nav {
+                    order: 1;
+                    margin-top: 10px;
+                }
+
+                .service-button {
+                    margin: 10px 0 0 0;
+                    order: 3;
+                }
+            }
+
+            /* Main Section */
             .main-section {
-                flex-direction: row;
+                display: flex;
+                flex-direction: column-reverse;
+                height: calc(100vh - 80px);
             }
-        }
 
-        .left-section {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            background-color: #D3D3D3;
-            order: -1;
-        }
-
-        .right-section {
-            flex: 1;
-            background: url("img/P1DERECHA.jpg") no-repeat center center;
-            background-size: cover;
-        }
-
-        .left-section div {
-            flex: 1;
-            width: 100%;
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-        }
-
-        /* Solo la imagen superior flota */
-        .left-section div:first-child img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            animation: float 3s infinite ease-in-out;
-            z-index: 0;
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0);
+            @media (min-width: 768px) {
+                .main-section {
+                    flex-direction: row;
+                }
             }
-            50% {
-                transform: translateY(-10px);
+
+            .left-section {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                background-color: #D3D3D3;
+                order: -1;
             }
-        }
 
-        .left-section div:nth-child(2) img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: 0;
-        }
+            .right-section {
+                flex: 1;
+                background: none;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
 
-        /* Capa transparente con efecto de descubrimiento */
-        .left-section div::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 1;
-            transform: translateX(0); /* Cubre la imagen al inicio */
-            transition: transform 0.5s ease-in-out;
-        }
+            .right-section video {
+                width: 100%;
+                height: auto;
+                max-height: 100%;
+                object-fit: cover;
+            }
 
-        .left-section div:hover::before {
-            transform: translateX(-100%);
-        }
+            .left-section div {
+                flex: 1;
+                width: 100%;
+                position: relative;
+                overflow: hidden;
+                cursor: pointer;
+            }
 
-        footer {
-            background-color: #767D6F;
-            color: #FFFFFF;
-            text-align: center;
-            padding: 10px;
-        }
-    </style>
-</head>
-<body>
+            /* Solo la imagen superior flota */
+            .left-section div:first-child img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                animation: float 3s infinite ease-in-out;
+                z-index: 0;
+            }
 
-<!-- Loader -->
-<div id="loader">
-    <img src="img/LOADER.jpg" alt="Cargando...">
-</div>
+            @keyframes float {
+                0%, 100% {
+                    transform: translateY(0);
+                }
+                50% {
+                    transform: translateY(-10px);
+                }
+            }
 
-<!-- Contenido principal -->
-<div class="main-content">
-    <header>
-        <a href="index.html">
-            <img src="img/P1LOGO.jpg" alt="Wood Wooks Logo">
-        </a>
-        <nav>
-            <a href="nosotros.html">Nosotros</a>
-            <a href="proyectos.html">Proyectos</a>
-            <a href="domotica.html">Domótica</a>
-        </nav>
-        <button class="service-button" onclick="window.open('https://wa.me/50254113908?text=%C2%A1Hola!%20Estoy%20interesado%20en%20los%20servicios%20de%20Wood%20Wooks', '_blank')">Servicio al Cliente</button>
-    </header>
+            .left-section div:nth-child(2) img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                z-index: 0;
+            }
 
-    <div class="main-section">
-        <div class="left-section">
-            <div onclick="window.open('https://https://tcnc1t-id.myshopify.com', '_blank')">
-                <img src="img/P1IZQUIERDA1.jpg" alt="Imagen de Shop">
-            </div>
-            <div onclick="window.location.href='make-dream-things.html'">
-                <img src="img/P1IZQUIERDA2.jpg" alt="Imagen de Make Dream Things">
-            </div>
-        </div>
-        <div class="right-section"></div>
+            /* Capa transparente con efecto de descubrimiento */
+            .left-section div::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                z-index: 1;
+                transform: translateX(0); /* Cubre la imagen al inicio */
+                transition: transform 0.5s ease-in-out;
+            }
+
+            .left-section div:hover::before {
+                transform: translateX(-100%);
+            }
+
+            footer {
+                background-color: #767D6F;
+                color: #FFFFFF;
+                text-align: center;
+                padding: 10px;
+            }
+        </style>
+    </head>
+    <body>
+
+    <!-- Loader -->
+    <div id="loader">
+        <img src="img/LOADER.jpg" alt="Cargando...">
     </div>
 
-    <footer>
-        <p>100% Guatemala</p>
-    </footer>
-</div>
+    <!-- Contenido principal -->
+    <div class="main-content">
+        <header>
+            <a href="index.html">
+                <img src="img/P1LOGO.jpg" alt="Wood Wooks Logo">
+            </a>
+            <nav>
+                <a href="nosotros.html">Nosotros</a>
+                <a href="proyectos.html">Proyectos</a>
+                <a href="domotica.html">Domótica</a>
+            </nav>
+            <button class="service-button" onclick="window.open('https://wa.me/50254113908?text=%C2%A1Hola!%20Estoy%20interesado%20en%20los%20servicios%20de%20Wood%20Wooks', '_blank')">Servicio al Cliente</button>
+        </header>
 
-<script>
-    // Simula una carga de 4 segundos
-    setTimeout(() => {
-        // Oculta el loader
-        document.getElementById("loader").classList.add("hidden");
+        <div class="main-section">
+            <div class="left-section">
+                <div onclick="window.open('https://https://tcnc1t-id.myshopify.com', '_blank')">
+                    <img src="img/P1IZQUIERDA1.jpg" alt="Imagen de Shop">
+                </div>
+                <div onclick="window.location.href='make-dream-things.html'">
+                    <img src="img/P1IZQUIERDA2.jpg" alt="Imagen de Make Dream Things">
+                </div>
+            </div>
+            <div class="right-section">
+                <video autoplay muted loop>
+                    <source src="VIDEO/P1VIDEO.mp4" type="video/mp4">
+                    Tu navegador no soporta el video.
+                </video>
+            </div>
+        </div>
 
-        // Muestra el contenido principal
-        document.querySelector(".main-content").classList.add("show");
-    }, 4000);
-</script>
+        <footer>
+            <p>100% Guatemala</p>
+        </footer>
+    </div>
 
-</body>
-</html>
+    <script>
+        // Simula una carga de 4 segundos
+        setTimeout(() => {
+            // Oculta el loader
+            document.getElementById("loader").classList.add("hidden");
+
+            // Muestra el contenido principal
+            document.querySelector(".main-content").classList.add("show");
+        }, 4000);
+    </script>
+
+    </body>
+    </html>
