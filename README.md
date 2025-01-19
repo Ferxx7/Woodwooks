@@ -1,2 +1,0 @@
-# Woodwooks
-Mueblería Guatemalteca
