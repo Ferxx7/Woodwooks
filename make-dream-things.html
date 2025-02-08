@@ -14,13 +14,20 @@
 
         body {
             font-family: 'Sofia Pro', sans-serif;
-            background-color: #ffffff;
-            color: #333;
+            background-color: #000;
+            color: #fff;
             text-align: center;
             overflow-x: hidden;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            animation: depthEffect 10s infinite linear;
+        }
+
+        @keyframes depthEffect {
+            0% { background: radial-gradient(circle, rgba(0,0,0,1) 10%, rgba(20,20,20,1) 40%, rgba(0,0,0,1) 100%); }
+            50% { background: radial-gradient(circle, rgba(10,10,10,1) 10%, rgba(40,40,40,1) 50%, rgba(10,10,10,1) 100%); }
+            100% { background: radial-gradient(circle, rgba(0,0,0,1) 10%, rgba(20,20,20,1) 40%, rgba(0,0,0,1) 100%); }
         }
 
         .form-container {
@@ -29,29 +36,22 @@
             justify-content: center;
             align-items: center;
             padding: 20px;
-            margin-top: 90px;
+            margin-top: 60px;
             flex-direction: column;
-            animation: fadeIn 1.5s ease-in-out;
             z-index: 10;
             position: relative;
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(0, 0, 0, 0.8);
             border-radius: 10px;
             padding: 20px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
             width: 90%;
             max-width: 500px;
         }
 
-        .loader {
-            width: 80px;
+        .logo {
+            width: 120px;
             height: auto;
             margin-bottom: 15px;
-            max-width: 100%;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
         }
 
         form {
@@ -68,15 +68,16 @@
             width: 100%;
             padding: 12px;
             margin-bottom: 15px;
-            border: 2px solid #A67A50;
+            border: 2px solid #CB996D;
             border-radius: 8px;
             font-size: 16px;
             transition: border-color 0.3s ease-in-out;
-            background: #fff;
+            background: #111;
+            color: #fff;
         }
 
         input:focus, textarea:focus, select:focus {
-            border-color: #CB996D;
+            border-color: #A67A50;
             outline: none;
         }
 
@@ -91,7 +92,7 @@
             cursor: pointer;
             width: 100%;
             transition: all 0.3s ease-in-out;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
         }
 
         button:hover {
@@ -102,7 +103,7 @@
 </head>
 <body>
     <div class="form-container">
-        <img src="img/LOADER.JPG" alt="Cargando..." class="loader">
+        <img src="img/P1LOGO.jpg" alt="Wood Wooks Logo" class="logo">
         <h2>🏡 Diseña tu Espacio Inteligente</h2>
         <form id="designForm">
             <label for="name">Nombre:</label>
@@ -119,33 +120,6 @@
                 <option value="industrial">Industrial</option>
             </select>
 
-            <label for="wood">Tipo de Madera:</label>
-            <select id="wood" name="wood">
-                <option value="cedro">Cedro</option>
-                <option value="nogal">Nogal</option>
-                <option value="roble">Roble</option>
-                <option value="pino">Pino</option>
-            </select>
-
-            <label for="domotica">Funciones Domóticas a Integrar:</label>
-            <select id="domotica" name="domotica">
-                <option value="iluminacion">Iluminación Inteligente</option>
-                <option value="seguridad">Seguridad y Control de Accesos</option>
-                <option value="climatizacion">Control de Climatización</option>
-                <option value="audio">Sistemas de Audio y Entretenimiento</option>
-            </select>
-
-            <label for="spaces">Espacios a Diseñar:</label>
-            <select id="spaces" name="spaces">
-                <option value="sala">Sala</option>
-                <option value="dormitorio">Dormitorio</option>
-                <option value="cocina">Cocina</option>
-                <option value="oficina">Oficina</option>
-            </select>
-
-            <label for="budget">Presupuesto Aproximado (USD):</label>
-            <input type="number" id="budget" name="budget" required>
-
             <label for="description">Describe tu Proyecto:</label>
             <textarea id="description" name="description" rows="5" required></textarea>
 
@@ -160,13 +134,9 @@
             let name = document.getElementById('name').value;
             let email = document.getElementById('email').value;
             let style = document.getElementById('style').value;
-            let wood = document.getElementById('wood').value;
-            let domotica = document.getElementById('domotica').value;
-            let spaces = document.getElementById('spaces').value;
-            let budget = document.getElementById('budget').value;
             let description = document.getElementById('description').value;
             
-            let message = `Hola!%20Soy%20${encodeURIComponent(name)}.%20Mi%20correo%20es%20${encodeURIComponent(email)}.%20Quiero%20un%20espacio%20${encodeURIComponent(style)}%20con%20madera%20de%20${encodeURIComponent(wood)}.%20Funciones%20dom%C3%B3ticas:%20${encodeURIComponent(domotica)}.%20Espacio:%20${encodeURIComponent(spaces)}.%20Presupuesto:%20$${encodeURIComponent(budget)}.%20Detalles:%20${encodeURIComponent(description)}`;
+            let message = `Hola!%20Soy%20${encodeURIComponent(name)}.%20Mi%20correo%20es%20${encodeURIComponent(email)}.%20Quiero%20un%20espacio%20${encodeURIComponent(style)}.%20Detalles:%20${encodeURIComponent(description)}`;
             
             window.open(`https://wa.me/50254113908?text=${message}`, '_blank');
         });
