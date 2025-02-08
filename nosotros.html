@@ -21,12 +21,12 @@
             overflow-x: hidden;
             display: flex;
             flex-direction: column;
-            min-height: 100vh; /* Asegura que el body ocupe toda la pantalla */
+            min-height: 100vh;
         }
 
-        /* Header transparente */
+        /* Header más grande y con transparencia */
         header {
-            background-color: rgba(0, 0, 0, 0.6); /* Transparente */
+            background-color: rgba(0, 0, 0, 0.75);
             color: white;
             display: flex;
             justify-content: center;
@@ -35,17 +35,19 @@
             top: 0;
             width: 100%;
             z-index: 1000;
-            height: 60px;
+            height: 80px; /* Aumentado para mejor visibilidad */
+            font-size: 20px;
+            font-weight: bold;
             backdrop-filter: blur(10px);
         }
 
-        /* Botón de regreso a inicio centrado */
+        /* Botón de regreso a inicio con bordes menos redondeados */
         .btn-regresar {
             background: linear-gradient(45deg, #CB996D, #A67A50);
             color: white;
-            padding: 10px 18px;
-            border-radius: 15px;
-            font-size: 16px;
+            padding: 12px 22px;
+            border-radius: 8px; /* Menos redondeado */
+            font-size: 18px;
             font-weight: bold;
             text-decoration: none;
             position: absolute;
@@ -61,15 +63,15 @@
 
         /* Contenedor principal */
         .main-content {
-            flex: 1; /* Permite que el contenido crezca y empuje el footer hacia abajo */
+            flex: 1;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
-            margin-top: 60px;
+            margin-top: 90px; /* Ajustado para mayor header */
         }
 
-        /* Contenedor de imagen SVG optimizado */
+        /* Contenedor de imagen SVG más grande en móviles */
         .svg-container {
             display: flex;
             justify-content: center;
@@ -83,24 +85,25 @@
             object-fit: contain;
         }
 
-        /* Pie de página fijo y siempre visible */
+        /* Pie de página fijo y mejor visible */
         footer {
             background-color: #000;
-            padding: 20px 0;
+            padding: 15px 0;
             width: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
             position: relative;
             bottom: 0;
-            min-height: 80px;
+            min-height: 60px;
         }
 
+        /* Logo más pequeño en el pie de página */
         footer img {
-            width: 120px;
+            width: 80px;
         }
 
-        /* Botón flotante WhatsApp con animación */
+        /* Botón flotante de WhatsApp */
         .whatsapp-float {
             position: fixed;
             bottom: 20px;
@@ -145,15 +148,20 @@
             transform: rotate(-45deg) translate(5px, -5px);
         }
 
-        /* Adaptabilidad en móviles y modo horizontal */
+        /* Adaptabilidad en móviles */
         @media (max-width: 768px) {
             .main-content {
                 padding-bottom: 60px;
             }
 
+            .svg-container img {
+                max-width: 110%; /* Hacemos que sea más grande */
+                max-height: 100vh;
+            }
+
             .btn-regresar {
-                font-size: 14px;
-                padding: 6px 12px;
+                font-size: 16px;
+                padding: 10px 18px;
             }
 
             .whatsapp-float {
@@ -161,6 +169,14 @@
                 right: 10px;
                 width: 55px;
                 height: 55px;
+            }
+
+            footer {
+                min-height: 50px;
+            }
+
+            footer img {
+                width: 70px; /* Ajuste en tamaño para móviles */
             }
         }
 
