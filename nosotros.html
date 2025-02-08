@@ -5,22 +5,199 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nosotros - Wood Wooks</title>
     <link rel="stylesheet" href="styles/styles.css">
+    <style>
+        /* Reset y optimización general */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Sofia Pro', sans-serif;
+            background-color: #ffffff;
+            color: #333;
+            text-align: center;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Asegura que el body ocupe toda la pantalla */
+        }
+
+        /* Header transparente */
+        header {
+            background-color: rgba(0, 0, 0, 0.6); /* Transparente */
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            height: 60px;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Botón de regreso a inicio centrado */
+        .btn-regresar {
+            background: linear-gradient(45deg, #CB996D, #A67A50);
+            color: white;
+            padding: 10px 18px;
+            border-radius: 15px;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .btn-regresar:hover {
+            background: linear-gradient(45deg, #A67A50, #CB996D);
+            transform: translateX(-50%) scale(1.1);
+        }
+
+        /* Contenedor principal */
+        .main-content {
+            flex: 1; /* Permite que el contenido crezca y empuje el footer hacia abajo */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            margin-top: 60px;
+        }
+
+        /* Contenedor de imagen SVG optimizado */
+        .svg-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+        .svg-container img {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+        }
+
+        /* Pie de página fijo y siempre visible */
+        footer {
+            background-color: #000;
+            padding: 20px 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            bottom: 0;
+            min-height: 80px;
+        }
+
+        footer img {
+            width: 120px;
+        }
+
+        /* Botón flotante WhatsApp con animación */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25D366;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            z-index: 1000;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.2);
+            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Icono de WhatsApp con 3 líneas horizontales */
+        .whatsapp-float div {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 3px 0;
+            transition: all 0.3s ease;
+        }
+
+        /* Animación fluida del botón flotante */
+        .whatsapp-float:hover div:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .whatsapp-float:hover div:nth-child(2) {
+            opacity: 0;
+        }
+
+        .whatsapp-float:hover div:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* Adaptabilidad en móviles y modo horizontal */
+        @media (max-width: 768px) {
+            .main-content {
+                padding-bottom: 60px;
+            }
+
+            .btn-regresar {
+                font-size: 14px;
+                padding: 6px 12px;
+            }
+
+            .whatsapp-float {
+                bottom: 10px;
+                right: 10px;
+                width: 55px;
+                height: 55px;
+            }
+        }
+
+        /* Ajuste para modo horizontal y contenido corto */
+        @media (max-height: 500px) {
+            footer {
+                position: fixed;
+                bottom: 0;
+            }
+        }
+
+    </style>
 </head>
 <body>
+
     <header>
-        <h1>Wood Wooks</h1>
+        <a href="index.html" class="btn-regresar">Inicio</a>
     </header>
 
-    <div class="content">
-        <h2>Nosotros</h2>
-        <p>
-            En Wood Wooks, nos apasiona transformar tus ideas en piezas únicas y funcionales. Ofrecemos soluciones personalizadas en diseño, fabricación y mantenimiento de muebles, 
-            así como proyectos de interiorismo que unen creatividad, calidad y sostenibilidad.
-        </p>
+    <div class="main-content">
+        <div class="svg-container">
+            <img src="img/nosotros.svg" alt="Nosotros - Wood Wooks">
+        </div>
     </div>
 
+    <!-- Pie de página con logo centrado -->
     <footer>
-        <p>&copy; 2025 Wood Wooks. Todos los derechos reservados.</p>
+        <img src="img/P1LOGO.jpg" alt="Wood Wooks Logo">
     </footer>
+
+    <!-- Botón flotante de WhatsApp -->
+    <a href="https://wa.me/50254113908?text=Hola!%20Estoy%20interesado%20en%20los%20servicios%20de%20Wood%20Wooks" 
+       class="whatsapp-float" target="_blank">
+        <div></div>
+        <div></div>
+        <div></div>
+    </a>
+
 </body>
 </html>
