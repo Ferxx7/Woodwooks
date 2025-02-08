@@ -32,6 +32,18 @@
             margin-top: 90px;
             flex-direction: column;
             animation: fadeIn 1.5s ease-in-out;
+            z-index: 10;
+            position: relative;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .loader {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 15px;
         }
 
         @keyframes fadeIn {
@@ -40,17 +52,8 @@
         }
 
         form {
-            background: linear-gradient(135deg, #f9f9f9 30%, #e8e8e8 100%);
-            padding: 20px;
-            border-radius: 10px;
             width: 90%;
             max-width: 500px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-            transition: transform 0.3s ease-in-out;
-        }
-
-        form:hover {
-            transform: scale(1.03);
         }
 
         label {
@@ -67,6 +70,7 @@
             border-radius: 8px;
             font-size: 16px;
             transition: border-color 0.3s ease-in-out;
+            background: #fff;
         }
 
         input:focus, textarea:focus {
@@ -122,6 +126,7 @@
 </head>
 <body>
     <div class="form-container">
+        <img src="img/LOADER.JPG" alt="Cargando..." class="loader">
         <h2>🚀 Transforma tu Idea en Realidad</h2>
         <form id="projectForm">
             <label for="name">Nombre:</label>
