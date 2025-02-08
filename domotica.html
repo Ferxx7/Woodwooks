@@ -5,18 +5,139 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Domótica - Wood Wooks</title>
     <link rel="stylesheet" href="styles/styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Sofia Pro', sans-serif;
+            background-color: #ffffff;
+            color: #333;
+            text-align: center;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .form-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            margin-top: 90px;
+            flex-direction: column;
+            animation: fadeIn 1.5s ease-in-out;
+            z-index: 10;
+            position: relative;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .loader {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 15px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        form {
+            width: 90%;
+            max-width: 500px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        select, input, textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 2px solid #A67A50;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease-in-out;
+            background: #fff;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            border-color: #CB996D;
+            outline: none;
+        }
+
+        button {
+            background: linear-gradient(45deg, #CB996D, #A67A50);
+            color: white;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        button:hover {
+            background: linear-gradient(45deg, #A67A50, #CB996D);
+            transform: scale(1.05);
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Wood Wooks</h1>
-    </header>
+    <div class="form-container">
+        <img src="img/LOADER.JPG" alt="Cargando..." class="loader">
+        <h2>📡 Diseña tu Proyecto de Domótica</h2>
+        <form id="domoticaForm">
+            <label for="name">Nombre:</label>
+            <input type="text" id="name" name="name" required>
 
-    <div class="image-fullscreen">
-        <img src="assets/img/imagenes/domotica.jpg" alt="Proyecto domótica" style="width:100%; height:100vh; object-fit:cover;">
+            <label for="email">Correo Electrónico:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="type">Tipo de Proyecto:</label>
+            <select id="type" name="type">
+                <option value="iluminacion">Automatización de Iluminación</option>
+                <option value="seguridad">Seguridad y Control de Accesos</option>
+                <option value="climatizacion">Control de Climatización</option>
+                <option value="audio">Sistemas de Audio y Entretenimiento</option>
+                <option value="energia">Gestión Energética</option>
+            </select>
+
+            <label for="description">Descripción del Proyecto:</label>
+            <textarea id="description" name="description" rows="5" required></textarea>
+
+            <button type="submit">Enviar Proyecto 📡</button>
+        </form>
     </div>
 
-    <footer>
-        <p>&copy; 2025 Wood Wooks. Todos los derechos reservados.</p>
-    </footer>
+    <script>
+        document.getElementById('domoticaForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            let name = document.getElementById('name').value;
+            let email = document.getElementById('email').value;
+            let type = document.getElementById('type').value;
+            let description = document.getElementById('description').value;
+            
+            let message = `Hola!%20Soy%20${encodeURIComponent(name)}.%20Mi%20correo%20es%20${encodeURIComponent(email)}.%20Quiero%20un%20proyecto%20de%20${encodeURIComponent(type)}.%20Detalles:%20${encodeURIComponent(description)}`;
+            
+            window.open(`https://wa.me/50254113908?text=${message}`, '_blank');
+        });
+    </script>
 </body>
 </html>
