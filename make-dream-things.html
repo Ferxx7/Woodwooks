@@ -14,8 +14,8 @@
 
         body {
             font-family: 'Sofia Pro', sans-serif;
-            background-color: #ffffff;
-            color: #333;
+            background-color: transparent;
+            color: #fff;
             text-align: center;
             overflow-x: hidden;
             display: flex;
@@ -56,40 +56,37 @@
             padding: 20px;
             margin-top: 90px;
             flex-direction: column;
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 10px;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(5px);
         }
 
         form {
-            background: rgba(255, 255, 255, 0.9);
+            background: transparent;
             padding: 20px;
             border-radius: 10px;
             width: 90%;
             max-width: 500px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: none;
         }
 
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
+        label, input, textarea, button {
+            background: transparent;
+            color: #fff;
+            border: 1px solid #fff;
         }
 
         input, textarea {
             width: 100%;
             padding: 10px;
             margin-bottom: 15px;
-            border: 1px solid #ccc;
             border-radius: 5px;
             font-size: 16px;
         }
 
         button {
             background: linear-gradient(45deg, #CB996D, #A67A50);
-            color: white;
             padding: 12px;
-            border: none;
             border-radius: 5px;
             font-size: 18px;
             font-weight: bold;
@@ -136,7 +133,7 @@
     </video>
 
     <div class="header">
-        <img src="img/LOADER.jpg" alt="Wood Wooks Logo">
+        <img src="img/P1LOGO.JPG" alt="Wood Wooks Logo">
     </div>
 
     <div class="form-container">
