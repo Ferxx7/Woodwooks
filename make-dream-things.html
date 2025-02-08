@@ -35,7 +35,7 @@
     }
 
     body {
-      background: var(--color-fondo);
+      background: radial-gradient(circle, rgba(20, 20, 20, 1) 10%, rgba(40, 40, 40, 0.8) 40%, rgba(0, 0, 0, 1) 100%);
       color: var(--color-contraste);
       display: flex;
       justify-content: center;
@@ -43,47 +43,6 @@
       min-height: 100vh;
       position: relative;
       overflow: hidden;
-    }
-
-    /* =============================
-      EFECTO DE LUCES DINÁMICAS (BACKGROUND ANIMADO)
-    ============================== */
-    @keyframes lucesFuturistas {
-      0% {
-        background: radial-gradient(
-          circle, 
-          rgba(20, 20, 20, 1) 10%, 
-          rgba(40, 40, 40, 0.8) 40%, 
-          rgba(0, 0, 0, 1) 100%
-        );
-      }
-      50% {
-        background: radial-gradient(
-          circle, 
-          rgba(30, 30, 30, 1) 10%, 
-          rgba(60, 60, 60, 0.7) 50%, 
-          rgba(10, 10, 10, 1) 100%
-        );
-      }
-      100% {
-        background: radial-gradient(
-          circle, 
-          rgba(20, 20, 20, 1) 10%, 
-          rgba(40, 40, 40, 0.8) 40%, 
-          rgba(0, 0, 0, 1) 100%
-        );
-      }
-    }
-
-    body::before {
-      content: "";
-      position: absolute;
-      top: 0; 
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      animation: lucesFuturistas 2s infinite alternate ease-in-out;
     }
 
     /* =============================
@@ -206,30 +165,28 @@
     }
 
     /* =============================
-      MENSAJE DE ERROR
+      BOTÓN FLOTANTE HOME
     ============================== */
-    .error-message {
-      color: var(--color-error);
-      font-size: 0.9rem;
-      margin-bottom: 1rem;
-      display: none; /* Aparecerá con JS */
+    .btn-home {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: var(--color-primario);
+      color: #fff;
+      padding: 10px 15px;
+      font-size: 16px;
+      border-radius: var(--radio-borde);
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
+      transition: background var(--transition), transform var(--transition);
     }
 
-    /* =============================
-      ESTADOS DE VALIDACIÓN
-    ============================== */
-    .invalid {
-      border-color: var(--color-error) !important;
+    .btn-home:hover {
+      background: var(--color-secundario);
+      transform: scale(1.05);
     }
 
-    /* =============================
-      MEDIOS RESPONSIVE BÁSICOS
-    ============================== */
-    @media (max-width: 480px) {
-      .btn-group {
-        flex-direction: column;
-      }
-    }
   </style>
 </head>
 <body>
@@ -251,7 +208,6 @@
     
     <!-- Formulario Multi-step -->
     <form id="woodwooksForm" novalidate>
-      <!-- STEP 1 -->
       <div class="step" id="step-1">
         <label for="nombre">Tu Nombre Completo *</label>
         <input type="text" id="nombre" name="nombre" placeholder="Ej. Juan Pérez" required>
@@ -259,328 +215,15 @@
         <label for="email">Correo Electrónico *</label>
         <input type="email" id="email" name="email" placeholder="Ej. ejemplo@correo.com" required>
 
-        <span class="error-message" id="errorStep1">Por favor, completa los campos requeridos.</span>
-
         <div class="btn-group">
           <button type="button" id="nextBtn1">Siguiente &raquo;</button>
-        </div>
-      </div>
-
-      <!-- STEP 2 -->
-      <div class="step" id="step-2">
-        <label for="tipoEspacio">¿Qué espacio deseas transformar?</label>
-        <select id="tipoEspacio" name="tipoEspacio" required>
-          <option value="" disabled selected>Selecciona un espacio</option>
-          <option value="Sala">Sala</option>
-          <option value="Cocina">Cocina</option>
-          <option value="Oficina">Oficina</option>
-          <option value="Dormitorio">Dormitorio</option>
-          <option value="Otro">Otro</option>
-        </select>
-
-        <label for="estilo">Estilo de Diseño Preferido</label>
-        <select id="estilo" name="estilo">
-          <option value="" disabled selected>Selecciona un estilo</option>
-          <option value="Moderno">Moderno</option>
-          <option value="Minimalista">Minimalista</option>
-          <option value="Rústico">Rústico</option>
-          <option value="Industrial">Industrial</option>
-          <option value="Clásico">Clásico</option>
-          <option value="Personalizado">Personalizado</option>
-        </select>
-
-        <span class="error-message" id="errorStep2">Por favor, indica el espacio a transformar.</span>
-
-        <div class="btn-group">
-          <button type="button" class="btn-prev" id="prevBtn2">&laquo; Anterior</button>
-          <button type="button" id="nextBtn2">Siguiente &raquo;</button>
-        </div>
-      </div>
-
-      <!-- STEP 3 -->
-      <div class="step" id="step-3">
-        <label for="material">Material Principal</label>
-        <select id="material" name="material">
-          <option value="" disabled selected>Selecciona un material</option>
-          <option value="Madera maciza">Madera maciza</option>
-          <option value="MDF">MDF</option>
-          <option value="Combinado con metal">Combinado con metal</option>
-          <option value="Opción sustentable">Opción sustentable</option>
-          <option value="Otro">Otro</option>
-        </select>
-
-        <label for="sensaciones">
-          ¿Qué sensaciones deseas transmitir en este espacio? (puedes elegir varias)
-        </label>
-        <select id="sensaciones" name="sensaciones" multiple>
-          <option value="Elegancia">Elegancia</option>
-          <option value="Confort">Confort</option>
-          <option value="Innovación">Innovación</option>
-          <option value="Productividad">Productividad</option>
-          <option value="Calidez">Calidez</option>
-        </select>
-
-        <span class="error-message" id="errorStep3"></span>
-
-        <div class="btn-group">
-          <button type="button" class="btn-prev" id="prevBtn3">&laquo; Anterior</button>
-          <button type="button" id="nextBtn3">Siguiente &raquo;</button>
-        </div>
-      </div>
-
-      <!-- STEP 4 -->
-      <div class="step" id="step-4">
-        <label for="domotica">¿Qué elementos domóticos deseas integrar?</label>
-        <select id="domotica" name="domotica" multiple>
-          <option value="Iluminación inteligente">Iluminación inteligente</option>
-          <option value="Seguridad">Seguridad</option>
-          <option value="Climatización">Climatización</option>
-          <option value="Sonido">Sonido</option>
-          <option value="Automatización total">Automatización total</option>
-        </select>
-
-        <label for="presupuesto">Presupuesto Aproximado (USD) *</label>
-        <input type="number" id="presupuesto" name="presupuesto" placeholder="Ej. 3000" required>
-
-        <span class="error-message" id="errorStep4">Por favor, indica tu presupuesto aproximado.</span>
-
-        <div class="btn-group">
-          <button type="button" class="btn-prev" id="prevBtn4">&laquo; Anterior</button>
-          <button type="button" id="nextBtn4">Siguiente &raquo;</button>
-        </div>
-      </div>
-
-      <!-- STEP 5 -->
-      <div class="step" id="step-5">
-        <label for="detalles">
-          Cuéntanos más detalles o requisitos especiales de tu proyecto
-        </label>
-        <textarea
-          id="detalles"
-          name="detalles"
-          rows="5"
-          placeholder="Ej. Fechas límite, color preferido, medidas aproximadas..."
-        ></textarea>
-
-        <p>
-          <strong>¡Estás a un paso de asegurar tu lugar!</strong><br/>
-          Solo tomamos un número limitado de proyectos para mantener la exclusividad.
-        </p>
-
-        <span class="error-message" id="errorStep5"></span>
-
-        <div class="btn-group">
-          <button type="button" class="btn-prev" id="prevBtn5">&laquo; Anterior</button>
-          <button type="submit" id="submitBtn">Enviar Proyecto</button>
         </div>
       </div>
     </form>
   </div>
 
-  <script>
-    // ==========================================
-    // VARIABLES GLOBALES
-    // ==========================================
-    const form = document.getElementById("woodwooksForm");
-    const steps = document.querySelectorAll(".step");
-    const progressFill = document.getElementById("progressFill");
+  <!-- BOTÓN FLOTANTE HOME -->
+  <a href="index.html" class="btn-home">🏠 Home</a>
 
-    // Botones
-    const nextBtn1 = document.getElementById("nextBtn1");
-    const nextBtn2 = document.getElementById("nextBtn2");
-    const nextBtn3 = document.getElementById("nextBtn3");
-    const nextBtn4 = document.getElementById("nextBtn4");
-    const prevBtn2 = document.getElementById("prevBtn2");
-    const prevBtn3 = document.getElementById("prevBtn3");
-    const prevBtn4 = document.getElementById("prevBtn4");
-    const prevBtn5 = document.getElementById("prevBtn5");
-
-    // Errores
-    const errorStep1 = document.getElementById("errorStep1");
-    const errorStep2 = document.getElementById("errorStep2");
-    const errorStep3 = document.getElementById("errorStep3");
-    const errorStep4 = document.getElementById("errorStep4");
-    const errorStep5 = document.getElementById("errorStep5");
-
-    // Campos
-    const nombre = document.getElementById("nombre");
-    const email = document.getElementById("email");
-    const tipoEspacio = document.getElementById("tipoEspacio");
-    const estilo = document.getElementById("estilo");
-    const material = document.getElementById("material");
-    const sensaciones = document.getElementById("sensaciones");
-    const domotica = document.getElementById("domotica");
-    const presupuesto = document.getElementById("presupuesto");
-    const detalles = document.getElementById("detalles");
-
-    let currentStep = 0; // índice del paso actual (0 a 4)
-
-    // ==========================================
-    // MOSTRAR PRIMER PASO
-    // ==========================================
-    showStep(currentStep);
-
-    // ==========================================
-    // EVENTOS BOTONES "SIGUIENTE"
-    // ==========================================
-    nextBtn1.addEventListener("click", () => {
-      if (validateStep1()) {
-        goToStep(1);
-      }
-    });
-    nextBtn2.addEventListener("click", () => {
-      if (validateStep2()) {
-        goToStep(2);
-      }
-    });
-    nextBtn3.addEventListener("click", () => {
-      // Step 3 no tiene campos obligatorios (podrías añadir validaciones opcionales)
-      goToStep(3);
-    });
-    nextBtn4.addEventListener("click", () => {
-      if (validateStep4()) {
-        goToStep(4);
-      }
-    });
-
-    // ==========================================
-    // EVENTOS BOTONES "ANTERIOR"
-    // ==========================================
-    prevBtn2.addEventListener("click", () => goToStep(0));
-    prevBtn3.addEventListener("click", () => goToStep(1));
-    prevBtn4.addEventListener("click", () => goToStep(2));
-    prevBtn5.addEventListener("click", () => goToStep(3));
-
-    // ==========================================
-    // SUBMIT
-    // ==========================================
-    form.addEventListener("submit", (event) => {
-      event.preventDefault();
-
-      if (validateStep5()) {
-        // Construimos el mensaje para WhatsApp
-        const sensacionesValues = Array.from(sensaciones.selectedOptions).map(opt => opt.value);
-        const domoticaValues = Array.from(domotica.selectedOptions).map(opt => opt.value);
-
-        let message = 
-          `Hola Wood Wooks!%0A` +
-          `Soy ${encodeURIComponent(nombre.value)} (%20${encodeURIComponent(email.value)}).%0A` +
-          `Quiero transformar mi ${encodeURIComponent(tipoEspacio.value)}, estilo ${encodeURIComponent(estilo.value)}.%0A` +
-          `Material: ${encodeURIComponent(material.value)}.%0A` +
-          `Sensaciones buscadas: ${encodeURIComponent(sensacionesValues.join(", "))}.%0A` +
-          `Domótica deseada: ${encodeURIComponent(domoticaValues.join(", "))}.%0A` +
-          `Presupuesto aprox: $${presupuesto.value}.%0A` +
-          `Detalles: ${encodeURIComponent(detalles.value)}`;
-
-        // Redirección a WhatsApp (ajusta el número según corresponda)
-        window.open(`https://wa.me/50254113908?text=${message}`, "_blank");
-      }
-    });
-
-    // ==========================================
-    // FUNCIONES HELPER
-    // ==========================================
-    function showStep(index) {
-      steps.forEach((step, i) => {
-        step.style.display = i === index ? "block" : "none";
-      });
-      updateProgressBar(index);
-    }
-
-    function goToStep(index) {
-      currentStep = index;
-      showStep(currentStep);
-      scrollToTop();
-    }
-
-    function updateProgressBar(stepIndex) {
-      // 5 pasos totales: stepIndex va de 0 a 4
-      const totalSteps = steps.length; 
-      const progress = ((stepIndex) / (totalSteps - 1)) * 100;
-      progressFill.style.width = `${progress}%`;
-    }
-
-    function scrollToTop() {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-
-    // ==========================================
-    // VALIDACIONES BÁSICAS
-    // ==========================================
-    function validateStep1() {
-      let valid = true;
-
-      // Limpiamos
-      errorStep1.style.display = "none";
-      nombre.classList.remove("invalid");
-      email.classList.remove("invalid");
-
-      if (!nombre.value.trim()) {
-        nombre.classList.add("invalid");
-        valid = false;
-      }
-      if (!email.value.trim() || !/^\S+@\S+\.\S+$/.test(email.value)) {
-        email.classList.add("invalid");
-        valid = false;
-      }
-      if (!valid) {
-        errorStep1.style.display = "block";
-      }
-      return valid;
-    }
-
-    function validateStep2() {
-      let valid = true;
-
-      errorStep2.style.display = "none";
-      tipoEspacio.classList.remove("invalid");
-
-      if (!tipoEspacio.value) {
-        tipoEspacio.classList.add("invalid");
-        valid = false;
-      }
-
-      if (!valid) {
-        errorStep2.style.display = "block";
-      }
-      return valid;
-    }
-
-    function validateStep4() {
-      let valid = true;
-
-      errorStep4.style.display = "none";
-      presupuesto.classList.remove("invalid");
-
-      if (!presupuesto.value.trim() || presupuesto.value <= 0) {
-        presupuesto.classList.add("invalid");
-        valid = false;
-      }
-      if (!valid) {
-        errorStep4.style.display = "block";
-      }
-      return valid;
-    }
-
-    function validateStep5() {
-      let valid = true;
-
-      errorStep5.style.display = "none";
-      // Aquí podrías forzar que detalles sea obligatorio
-      // si así lo deseas, por ejemplo:
-      // if (!detalles.value.trim()) {
-      //   detalles.classList.add("invalid");
-      //   valid = false;
-      // }
-      // else {
-      //   detalles.classList.remove("invalid");
-      // }
-
-      if (!valid) {
-        errorStep5.style.display = "block";
-      }
-      return valid;
-    }
-  </script>
 </body>
 </html>
