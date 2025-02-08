@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Make Your Dreams - Wood Wooks</title>
+    <title>Domótica - Wood Wooks</title>
     <link rel="stylesheet" href="styles/styles.css">
     <style>
         * {
@@ -38,12 +38,15 @@
             border-radius: 10px;
             padding: 20px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            width: 90%;
+            max-width: 500px;
         }
 
         .loader {
-            width: 50px;
-            height: 50px;
+            width: 80px;
+            height: auto;
             margin-bottom: 15px;
+            max-width: 100%;
         }
 
         @keyframes fadeIn {
@@ -52,8 +55,7 @@
         }
 
         form {
-            width: 90%;
-            max-width: 500px;
+            width: 100%;
         }
 
         label {
@@ -62,7 +64,7 @@
             font-weight: bold;
         }
 
-        input, textarea {
+        select, input, textarea {
             width: 100%;
             padding: 12px;
             margin-bottom: 15px;
@@ -73,7 +75,7 @@
             background: #fff;
         }
 
-        input:focus, textarea:focus {
+        input:focus, textarea:focus, select:focus {
             border-color: #CB996D;
             outline: none;
         }
@@ -127,32 +129,42 @@
 <body>
     <div class="form-container">
         <img src="img/LOADER.JPG" alt="Cargando..." class="loader">
-        <h2>🚀 Transforma tu Idea en Realidad</h2>
-        <form id="projectForm">
+        <h2>📡 Diseña tu Proyecto de Domótica</h2>
+        <form id="domoticaForm">
             <label for="name">Nombre:</label>
             <input type="text" id="name" name="name" required>
 
             <label for="email">Correo Electrónico:</label>
             <input type="email" id="email" name="email" required>
 
-            <label for="description">Describe tu Proyecto:</label>
+            <label for="type">Tipo de Proyecto:</label>
+            <select id="type" name="type">
+                <option value="iluminacion">Automatización de Iluminación</option>
+                <option value="seguridad">Seguridad y Control de Accesos</option>
+                <option value="climatizacion">Control de Climatización</option>
+                <option value="audio">Sistemas de Audio y Entretenimiento</option>
+                <option value="energia">Gestión Energética</option>
+            </select>
+
+            <label for="description">Descripción del Proyecto:</label>
             <textarea id="description" name="description" rows="5" required></textarea>
 
-            <button type="submit">Enviar 🚀</button>
+            <button type="submit">Enviar Proyecto 📡</button>
         </form>
     </div>
 
     <a href="index.html" class="home-float">🏠</a>
 
     <script>
-        document.getElementById('projectForm').addEventListener('submit', function(event) {
+        document.getElementById('domoticaForm').addEventListener('submit', function(event) {
             event.preventDefault();
             
             let name = document.getElementById('name').value;
             let email = document.getElementById('email').value;
+            let type = document.getElementById('type').value;
             let description = document.getElementById('description').value;
             
-            let message = `Hola!%20Me%20llamo%20${encodeURIComponent(name)}.%20Mi%20correo%20es%20${encodeURIComponent(email)}.%20Aquí%20está%20mi%20descripción%20de%20proyecto:%20${encodeURIComponent(description)}`;
+            let message = `Hola!%20Soy%20${encodeURIComponent(name)}.%20Mi%20correo%20es%20${encodeURIComponent(email)}.%20Quiero%20un%20proyecto%20de%20${encodeURIComponent(type)}.%20Detalles:%20${encodeURIComponent(description)}`;
             
             window.open(`https://wa.me/50254113908?text=${message}`, '_blank');
         });
