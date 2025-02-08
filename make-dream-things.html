@@ -5,7 +5,7 @@
   <title>Formulario Premium - Wood Wooks</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <!-- Fuente opcional (Google Fonts, ejemplo Poppins o Montserrat) -->
+  <!-- Fuente opcional (Google Fonts, ejemplo Poppins) -->
   <link rel="preconnect" href="https://fonts.gstatic.com" />
   <link 
     href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" 
@@ -17,14 +17,14 @@
       VARIABLES CSS & RESET
     ============================== */
     :root {
-      --color-fondo: #000000;            /* Fondo principal (Modo oscuro) */
-      --color-primario: #CB996D;         /* Color dorado/marrón principal de marca */
-      --color-secundario: #A67A50;       /* Color secundario complementario */
-      --color-contraste: #FFFFFF;        /* Texto y elementos contrastantes */
-      --color-error: #ff4b4b;           /* Color para validaciones de error */
+      --color-fondo: #000000;         /* Fondo principal (Modo oscuro) */
+      --color-primario: #CB996D;      /* Color dorado/marrón principal de marca */
+      --color-secundario: #A67A50;    /* Color secundario complementario */
+      --color-contraste: #FFFFFF;     /* Texto y elementos contrastantes */
+      --color-error: #ff4b4b;         /* Color para validaciones de error */
       --transition: 0.3s ease-in-out;
-      --radio-borde: 8px;               /* Border-radius global */
-      --alto-barra: 6px;                /* Altura barra de progreso */
+      --radio-borde: 8px;            /* Border-radius global */
+      --alto-barra: 6px;             /* Altura barra de progreso */
     }
 
     * {
@@ -234,8 +234,8 @@
 </head>
 <body>
   <div class="form-container">
-    <!-- Logo (opcional) -->
-    <img src="img/P1LOGO.jpg" alt="Wood Wooks Logo">
+    <!-- Logo Wood Wooks -->
+    <img src="img/P1LOGO.jpg" alt="Wood Wooks Logo" class="logo" />
 
     <!-- Título y subtítulo -->
     <h1>Diseña tu Espacio Inteligente</h1>
@@ -394,7 +394,6 @@
     const prevBtn3 = document.getElementById("prevBtn3");
     const prevBtn4 = document.getElementById("prevBtn4");
     const prevBtn5 = document.getElementById("prevBtn5");
-    const submitBtn = document.getElementById("submitBtn");
 
     // Errores
     const errorStep1 = document.getElementById("errorStep1");
@@ -473,7 +472,7 @@
           `Presupuesto aprox: $${presupuesto.value}.%0A` +
           `Detalles: ${encodeURIComponent(detalles.value)}`;
 
-        // Redirección a WhatsApp
+        // Redirección a WhatsApp (ajusta el número según corresponda)
         window.open(`https://wa.me/50254113908?text=${message}`, "_blank");
       }
     });
