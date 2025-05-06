@@ -17,7 +17,7 @@
       scroll-behavior: smooth;
     }
 
-    * {
+    *, *::before, *::after {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
@@ -149,7 +149,7 @@
     .main-section {
       display: flex;
       flex-wrap: nowrap;
-      height: 100vh;
+      min-height: 100vh;
       background: rgba(255, 255, 255, 0.03);
       backdrop-filter: blur(6px);
       overflow: hidden;
@@ -222,6 +222,44 @@
       font-size: 14px;
       border-top: 1px solid rgba(255,255,255,0.08);
     }
+
+    /* ✅ Responsivo móvil */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      nav {
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 10px;
+      }
+
+      .main-section {
+        flex-direction: column;
+        height: auto;
+      }
+
+      .video-section {
+        order: 1;
+        width: 100%;
+        height: 50vh;
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+      }
+
+      .left-section {
+        order: 2;
+        width: 100%;
+        flex-direction: column;
+      }
+
+      .left-section div {
+        height: 200px;
+        margin-bottom: 12px;
+      }
+    }
   </style>
 </head>
 
@@ -270,22 +308,22 @@
     </footer>
   </div>
 
+  <!-- JS: loader + animación de entrada -->
   <script>
-    // Loader + scroll rebote loop
-    setTimeout(() => {
-      document.getElementById("loader").classList.add("hidden");
-      document.getElementById("animated-video").classList.add("show");
+    window.addEventListener("load", () => {
+      const loader = document.getElementById("loader");
+      const video = document.getElementById("animated-video");
 
-      // Scroll hacia abajo solo una vez
-      window.scrollTo({ top: 100, behavior: "smooth" });
+      setTimeout(() => {
+        loader.classList.add("hidden");
+        video.classList.add("show");
 
-      // Scroll rebote loop
-      let goingDown = false;
-      setInterval(() => {
-        window.scrollTo({ top: goingDown ? 100 : 80, behavior: "smooth" });
-        goingDown = !goingDown;
-      }, 2500);
-    }, 3000);
+        // Scroll invitacional (una vez)
+        setTimeout(() => {
+          window.scrollBy({ top: 80, behavior: "smooth" });
+        }, 1000);
+      }, 3000);
+    });
   </script>
 </body>
 </html>
