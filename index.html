@@ -13,14 +13,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
 
   <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
-    html, body {
-      height: 100%;
+    body {
       font-family: 'Poppins', sans-serif;
       background: linear-gradient(135deg, #000, #1a1a1a);
       color: #fff;
@@ -36,7 +39,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      z-index: 1000;
+      z-index: 9999;
       transition: opacity 0.5s ease, visibility 0.5s ease;
     }
 
@@ -81,35 +84,33 @@
 
     .cta-button {
       position: relative;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 12px 28px;
+      padding: 13px 32px;
       font-size: 15px;
       font-weight: 600;
       color: #ffffff;
-      background: rgba(106, 112, 93, 0.2); /* color del footer */
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(8px);
-      text-transform: uppercase;
-      letter-spacing: 1px;
+      background: rgba(106, 112, 93, 0.3);
+      border: 1px solid #6A705D;
+      border-radius: 45px;
+      backdrop-filter: blur(10px);
       cursor: pointer;
       overflow: hidden;
       z-index: 1;
+      text-transform: uppercase;
+      letter-spacing: 1px;
       transition: all 0.3s ease-in-out;
     }
 
     .cta-button:hover {
-      background: rgba(106, 112, 93, 0.35);
-      box-shadow: 0 0 15px rgba(106, 112, 93, 0.5);
-      transform: translateY(-1px);
+      background: rgba(106, 112, 93, 0.45);
+      box-shadow: 0 0 20px rgba(106, 112, 93, 0.5);
+      transform: scale(1.02);
     }
 
     .cta-button::before {
       content: '';
       position: absolute;
       top: -50%;
-      left: -50%;
+      left: -75%;
       width: 200%;
       height: 200%;
       background: linear-gradient(
@@ -119,19 +120,13 @@
         rgba(255, 255, 255, 0) 100%
       );
       transform: rotate(25deg);
-      animation: lightSweep 6s infinite;
+      animation: shimmer 7s linear infinite;
       z-index: 0;
     }
 
-    @keyframes lightSweep {
+    @keyframes shimmer {
       0% { transform: translateX(-100%) rotate(25deg); }
       100% { transform: translateX(100%) rotate(25deg); }
-    }
-
-    .whatsapp-icon {
-      font-size: 18px;
-      color: #25D366;
-      z-index: 2;
     }
 
     nav {
@@ -227,41 +222,6 @@
       font-size: 14px;
       border-top: 1px solid rgba(255,255,255,0.08);
     }
-
-    @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      nav {
-        justify-content: center;
-        flex-wrap: wrap;
-        margin-top: 10px;
-      }
-
-      .main-section {
-        flex-direction: column;
-        height: auto;
-      }
-
-      .video-section {
-        order: 1;
-        width: 100%;
-        height: 50vh;
-      }
-
-      .left-section {
-        order: 2;
-        flex-direction: column;
-      }
-
-      .left-section div {
-        height: 200px;
-        width: 100%;
-        margin-bottom: 12px;
-      }
-    }
   </style>
 </head>
 
@@ -276,8 +236,8 @@
     <header>
       <div class="center-header">
         <img src="img/P1LOGO.png" alt="Wood Wooks Logo" />
-        <button class="cta-button" onclick="window.open('https://wa.me/50254113908?text=Hola!%20Estoy%20interesado%20en%20los%20servicios%20de%20Wood%20Wooks', '_blank')">
-          <span class="whatsapp-icon">📞</span> Contáctanos
+        <button class="cta-button" onclick="window.open('https://wa.me/50254113908?text=Hola! Estoy interesado en los servicios de Wood Wooks', '_blank')">
+          Contáctanos
         </button>
       </div>
       <nav>
@@ -311,15 +271,20 @@
   </div>
 
   <script>
-    // Loader
+    // Loader + scroll rebote loop
     setTimeout(() => {
       document.getElementById("loader").classList.add("hidden");
-      document.querySelector(".main-content").classList.add("show");
+      document.getElementById("animated-video").classList.add("show");
 
-      // Animar el video 1s después
-      setTimeout(() => {
-        document.getElementById("animated-video").classList.add("show");
-      }, 1000);
+      // Scroll hacia abajo solo una vez
+      window.scrollTo({ top: 100, behavior: "smooth" });
+
+      // Scroll rebote loop
+      let goingDown = false;
+      setInterval(() => {
+        window.scrollTo({ top: goingDown ? 100 : 80, behavior: "smooth" });
+        goingDown = !goingDown;
+      }, 2500);
     }, 3000);
   </script>
 </body>
