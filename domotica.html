@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wood Wooks | Domótica & Seguridad</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@300;500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #f6f5f2;
+      color: #2e2e2e;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: rgba(0,0,0,0.8);
+      backdrop-filter: blur(6px);
+      padding: 20px 40px;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+    header img {
+      height: 60px;
+    }
+    nav a {
+      color: #ffffff;
+      margin-left: 25px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #CB996D;
+    }
+    h1 {
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      margin: 60px 0 20px;
+      color: #5a4736;
+    }
+    .productos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 40px;
+      padding: 0 40px 60px;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    .card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+    .card-body {
+      padding: 20px;
+    }
+    .card-body h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      color: #7b5c3f;
+    }
+    .card-body p {
+      font-size: 0.95rem;
+      margin-bottom: 15px;
+    }
+    .precio {
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #a0714f;
+      margin-bottom: 10px;
+    }
+    .btn {
+      background-color: transparent;
+      color: #a0714f;
+      border: 1px solid #a0714f;
+      padding: 10px 24px;
+      border-radius: 40px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn:hover {
+      background-color: #a0714f;
+      color: #fff;
+    }
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #777;
+      padding: 30px;
+      background: #ece7df;
+      border-top: 1px solid rgba(0,0,0,0.06);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="img/P1LOGO.png" alt="Wood Wooks Logo">
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="Tienda.html">Tienda</a>
+      <a href="Domotica.html">Domótica</a>
+      <a href="Servicios.html">Servicios</a>
+    </nav>
+  </header>
+
+  <h1>Domótica y Seguridad Residencial</h1>
+  <p style="text-align:center; margin-bottom:40px; font-size:1rem; color:#5a4736;">Todos los precios incluyen instalación estándar y pueden variar según zona. Cada cotización es personalizada.</p>
+
+  <div class="productos">
+    <div class="card">
+      <img src="https://smarttecgt.com/cdn/shop/files/EU-Version-SONOFF-Dual-Relay-WIFI-Switch-DIY-Module-2-Gang-Timer-APP-Control-Works-with-Amazon.jpg?v=1695955306&width=1946" alt="Relé Sonoff">
+      <div class="card-body">
+        <h2>Control de Luces Inteligente</h2>
+        <p>Automatiza encendido y apagado desde tu celular. Compatible con Alexa y Google Home.</p>
+        <p class="precio">Desde Q599</p>
+        <a class="btn" href="https://wa.me/50254113908?text=Hola!%20Estoy%20interesado%20en%20el%20servicio%20de%20control%20de%20luces%20inteligente" target="_blank">Instalar ahora</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://smarttecgt.com/cdn/shop/products/ALARMACOMPLETA.jpg?v=1671478404&width=1946" alt="Sistema de Alarma">
+      <div class="card-body">
+        <h2>Alarma Residencial Inteligente</h2>
+        <p>Sensor de movimiento, puerta, app de control remoto y alertas al celular.</p>
+        <p class="precio">Desde Q1,149</p>
+        <a class="btn" href="https://wa.me/50254113908?text=Hola!%20Quiero%20una%20cotización%20para%20una%20alarma%20inteligente%20en%20mi%20hogar" target="_blank">Instalar ahora</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://smarttecgt.com/cdn/shop/products/CAMARAEXTERIOR.jpg?v=1671747412&width=1946" alt="Cámara Exterior">
+      <div class="card-body">
+        <h2>Cámaras de Seguridad WiFi</h2>
+        <p>Visualiza en vivo tu casa desde cualquier lugar. Visión nocturna y grabación en la nube.</p>
+        <p class="precio">Desde Q889</p>
+        <a class="btn" href="https://wa.me/50254113908?text=Hola!%20Quiero%20instalar%20cámaras%20de%20seguridad%20en%20mi%20residencia" target="_blank">Instalar ahora</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://smarttecgt.com/cdn/shop/files/6054203b1d7dcd001c8ff0c2.jpg?v=1699573326&width=1946" alt="Timbre Inteligente">
+      <div class="card-body">
+        <h2>Timbre con Cámara y Audio</h2>
+        <p>Habla con quien toque el timbre desde tu celular. Incluye detección de movimiento.</p>
+        <p class="precio">Desde Q739</p>
+        <a class="btn" href="https://wa.me/50254113908?text=Hola!%20Quiero%20instalar%20un%20timbre%20inteligente%20con%20cámara" target="_blank">Instalar ahora</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    Wood Wooks — Soluciones domóticas y seguridad con elegancia guatemalteca
+  </footer>
+</body>
+</html>
