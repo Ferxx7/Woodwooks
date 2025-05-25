@@ -9,8 +9,16 @@
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#6A705D" />
   <title>Wood Wooks | Muebles Personalizados</title>
-  <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+
+  <!-- Preload recursos críticos -->
+  <link rel="preload" href="img/LOADER.jpg" as="image" />
+  <link rel="preload" href="VIDEO/P1VIDEO.mp4" as="video" type="video/mp4" />
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" as="style" />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+    rel="stylesheet"
+  />
 
   <style>
     html {
@@ -274,7 +282,8 @@
     <header>
       <div class="center-header">
         <img src="img/P1LOGO.png" alt="Wood Wooks Logo" />
-        <button class="cta-button" onclick="window.open('https://wa.me/50254113908?text=Hola! Estoy interesado en los servicios de Wood Wooks', '_blank')">
+        <button class="cta-button"
+          onclick="window.open('https://wa.me/50254113908?text=Hola! Estoy interesado en los servicios de Wood Wooks', '_blank')">
           Contáctanos
         </button>
       </div>
@@ -287,7 +296,7 @@
 
     <div class="main-section">
       <div class="video-section" id="animated-video">
-        <video autoplay muted loop playsinline preload="auto" poster="img/P1DERECHA.jpg">
+        <video autoplay muted loop playsinline preload="metadata" poster="img/P1DERECHA.jpg">
           <source src="VIDEO/P1VIDEO.mp4" type="video/mp4" />
           Tu navegador no soporta videos.
         </video>
@@ -295,10 +304,10 @@
 
       <div class="left-section">
         <div onclick="window.location.href='Tienda.html'">
-          <img src="img/P1IZQUIERDA1.jpg" alt="Ir a la Tienda" />
+          <img loading="lazy" src="img/P1IZQUIERDA1.jpg" alt="Ir a la Tienda" />
         </div>
         <div onclick="window.location.href='Servicios.html'">
-          <img src="img/P1IZQUIERDA2.jpg" alt="Diseños Personalizados" />
+          <img loading="lazy" src="img/P1IZQUIERDA2.jpg" alt="Diseños Personalizados" />
         </div>
       </div>
     </div>
@@ -308,22 +317,27 @@
     </footer>
   </div>
 
-  <!-- JS: loader + animación de entrada -->
-  <script>
+  <!-- JS optimizado: defer y uso de loadeddata en lugar de timeout -->
+  <script defer>
+    const loader = document.getElementById("loader");
+    const video  = document.querySelector("#animated-video video");
+
     window.addEventListener("load", () => {
-      const loader = document.getElementById("loader");
-      const video = document.getElementById("animated-video");
-
-      setTimeout(() => {
-        loader.classList.add("hidden");
-        video.classList.add("show");
-
-        // Scroll invitacional (una vez)
-        setTimeout(() => {
-          window.scrollBy({ top: 80, behavior: "smooth" });
-        }, 1000);
-      }, 3000);
+      if (video.readyState >= 3) {
+        hideLoader();
+      } else {
+        video.addEventListener("loadeddata", hideLoader);
+      }
     });
+
+    function hideLoader() {
+      loader.classList.add("hidden");
+      document.getElementById("animated-video").classList.add("show");
+
+      loader.addEventListener("transitionend", () => {
+        window.scrollBy({ top: 80, behavior: "smooth" });
+      });
+    }
   </script>
 </body>
 </html>
