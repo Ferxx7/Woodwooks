@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "nombre": "Sofá Aura",
+    "descripcion": "Diseño envolvente con tapiz natural. Perfecto para crear una atmósfera cálida y contemporánea.",
+    "precio": 2890,
+    "categoria": "sala",
+    "imagen": "https://images.unsplash.com/photo-1582582423282-4aa4fba93c3d"
+  },
+  {
+    "id": 2,
+    "nombre": "Mesa Bruma",
+    "descripcion": "Roble natural con acabado mate. Fusiona arquitectura y naturaleza para un comedor elegante.",
+    "precio": 3490,
+    "categoria": "comedor",
+    "imagen": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c"
+  },
+  {
+    "id": 3,
+    "nombre": "Lámpara Luno",
+    "descripcion": "Luz cálida con domótica integrada. Ideal para destacar atmósferas relajantes en entornos naturales.",
+    "precio": 890,
+    "categoria": "iluminacion",
+    "imagen": "https://images.unsplash.com/photo-1616628182506-b5bc6923f0d8"
+  }
+]

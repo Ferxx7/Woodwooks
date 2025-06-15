@@ -211,63 +211,6 @@
     Wood Wooks — Inspirando atmósferas desde Guatemala
   </footer>
 
-  <script>
-    // Array de productos
-    const productos = [
-      {
-        nombre: "Sofá Aura",
-        descripcion: "Diseño envolvente con tapiz natural. Perfecto para crear una atmósfera cálida y contemporánea.",
-        imagen: "https://images.unsplash.com/photo-1582582423282-4aa4fba93c3d",
-        categoria: "sala",
-        enlace: "https://wa.me/50254113908?text=Hola!%20Estoy%20interesado%20en%20el%20Sof%C3%A1%20Aura"
-      },
-      {
-        nombre: "Mesa Bruma",
-        descripcion: "Roble natural con acabado mate. Fusiona arquitectura y naturaleza para un comedor elegante.",
-        imagen: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c",
-        categoria: "comedor",
-        enlace: "https://wa.me/50254113908?text=Hola!%20Estoy%20interesado%20en%20la%20Mesa%20Bruma"
-      },
-      {
-        nombre: "Lámpara Luno",
-        descripcion: "Luz cálida con domótica integrada. Ideal para destacar atmósferas relajantes en entornos naturales.",
-        imagen: "https://images.unsplash.com/photo-1616628182506-b5bc6923f0d8",
-        categoria: "iluminacion",
-        enlace: "https://wa.me/50254113908?text=Hola!%20Estoy%20interesado%20en%20la%20L%C3%A1mpara%20Luno"
-      }
-    ];
-
-    // Generar productos dinámicamente
-    const contenedorProductos = document.getElementById("productos");
-
-    function renderProductos(categoria) {
-      contenedorProductos.innerHTML = "";
-      const productosFiltrados = categoria === "todos" ? productos : productos.filter(p => p.categoria === categoria);
-
-      productosFiltrados.forEach(producto => {
-        const productoHTML = `
-          <div class="producto" data-categoria="${producto.categoria}">
-            <img src="${producto.imagen}" alt="${producto.nombre}">
-            <div class="producto-info">
-              <h2>${producto.nombre}</h2>
-              <p>${producto.descripcion}</p>
-              <button class="btn-consultar" onclick="window.open('${producto.enlace}', '_blank')">Consultar</button>
-            </div>
-          </div>
-        `;
-        contenedorProductos.innerHTML += productoHTML;
-      });
-    }
-
-    // Filtrar productos
-    function filtrarProductos(categoria) {
-      document.querySelectorAll(".filtros button").forEach(btn => btn.classList.remove("active"));
-      event.target.classList.add("active");
-      renderProductos(categoria);
-    }
-
-    // Renderizar todos los productos al cargar la página
-    renderProductos("todos");
-  </script>
+  <script src="js/productos.js"></script>
 </body>
 </html>
