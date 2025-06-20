@@ -10,6 +10,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lora:wght@600&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 
+  <!-- Locomotive Scroll CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.css" />
+  <!-- GLightbox CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+
   <style>
     /* Variables de diseño */
     :root {
@@ -41,6 +46,8 @@
       justify-content: space-between;
       align-items: center;
       border-bottom: 1px solid var(--clr-gray);
+      position: relative;
+      z-index: 10;
     }
     .logo {
       font-family: var(--ff-heading);
@@ -107,37 +114,14 @@
       transform: scale(1.05);
     }
 
-    /* Filtros */
-    .categories {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: .75rem;
-      margin: 2rem auto;
-    }
-    .categories button {
-      background: var(--clr-white);
-      border: 1px solid var(--clr-charcoal);
-      padding: .5rem 1.5rem;
-      border-radius: 999px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background var(--trans-time) ease, color var(--trans-time) ease;
-    }
-    .categories button.active,
-    .categories button:hover {
-      background: var(--clr-charcoal);
-      color: var(--clr-white);
-    }
-
-    /* Grid de productos */
+    /* Galería / Grid de productos */
     .products-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
       gap: 2rem;
-      padding: 0 2rem 4rem;
+      padding: 2rem;
       max-width: 1200px;
-      margin: 0 auto;
+      margin: 0 auto 4rem;
     }
     .product-card {
       background: var(--clr-white);
@@ -145,10 +129,7 @@
       overflow: hidden;
       box-shadow: 0 4px 12px rgba(0,0,0,0.05);
       transition: transform var(--trans-time) ease, box-shadow var(--trans-time) ease;
-    }
-    .product-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      position: relative;
     }
     .product-card img {
       width: 100%;
@@ -156,6 +137,11 @@
       object-fit: cover;
       display: block;
       loading: lazy;
+      transform: scale(1.1);
+      transition: transform var(--trans-time) ease;
+    }
+    .product-card:hover img {
+      transform: scale(1.2) translateY(-10px);
     }
     .product-info {
       padding: 1.5rem;
@@ -185,14 +171,15 @@
       color: var(--clr-white);
     }
 
-    /* Footer */
-    footer {
-      background: var(--clr-white);
-      text-align: center;
-      padding: 2rem;
-      border-top: 1px solid var(--clr-gray);
-      font-size: .9rem;
-      color: var(--clr-muted);
+    /* Animaciones al hacer scroll */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity var(--trans-time) ease, transform var(--trans-time) ease;
+    }
+    .fade-up.is-reveal {
+      opacity: 1;
+      transform: translateY(0);
     }
   </style>
 </head>
@@ -211,19 +198,12 @@
   <section class="hero">
     <h1>Línea Atmósfera</h1>
     <p>Muebles de lujo con alma tropical y diseño contemporáneo.</p>
-    <button class="btn-primary" onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})">Ver Productos</button>
+    <button class="btn-primary" onclick="scrollToShop()">Ver Productos</button>
   </section>
 
-  <main id="shop">
-    <div class="categories" role="tablist" aria-label="Categorías">
-      <button class="active" data-cat="todos" role="tab">Todos</button>
-      <button data-cat="sala" role="tab">Sala</button>
-      <button data-cat="comedor" role="tab">Comedor</button>
-      <button data-cat="iluminacion" role="tab">Iluminación</button>
-    </div>
-
-    <section class="products-grid">
-      <!-- JS inyecta las tarjetas aquí -->
+  <main id="shop" data-scroll-container>
+    <section class="products-grid" id="gallery">
+      <!-- Tarjetas inyectadas por JS -->
     </section>
   </main>
 
@@ -231,47 +211,73 @@
     &copy; 2025 Wood Wooks — Inspirando atmósferas desde Guatemala
   </footer>
 
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
   <script defer>
-    const productos = [
-      { nombre: "Escritorio", descripcion: "Sobre de madera maciza certificada (grosor 3 cm) con acabado mate natural.", imagen: "img/escritorio.png", categoria: "sala", enlace: "https://wa.me/50254113908?text=¡Quiero%20el%20Sof%C3%A1%20Aura!" },
-      { nombre: "Modular", descripcion: "Tablero de 3 cm de grosor con acabado natural mate, que resalta la veta y aporta calidez.", imagen: "img/muebletv.png", categoria: "sala", enlace: "https://wa.me/50254113908?text=¡Quiero%20el%20Sof%C3%A1%20Aura!" },
-      { nombre: "Tocador", descripcion: "combina la calidez de la madera maciza con la elegancia de los metales y la suavidad de los detalles femeninos.", imagen: "img/tocador.png", categoria: "sala", enlace: "https://wa.me/50254113908?text=¡Quiero%20el%20Sof%C3%A1%20Aura!" },
-      { nombre: "Auxiliar de Cama", descripcion: "Un pequeño mueble que marca la gran diferencia al despertar.", imagen: "img/aux.png", categoria: "sala", enlace: "https://wa.me/50254113908?text=¡Quiero%20el%20Sof%C3%A1%20Aura!" },
-      { nombre: "Cama", descripcion: "Donde cada noche despierta tus sentidos en un paraíso contemporáneo.", imagen: "img/cama.png", categoria: "sala", enlace: "https://wa.me/50254113908?text=¡Quiero%20el%20Sof%C3%A1%20Aura!" },
-      { nombre: "Sofa", descripcion: "Donde cada conversación y momento de descanso se vive con elegancia y calidez natural.", imagen: "img/sofa.png", categoria: "sala", enlace: "https://wa.me/50254113908?text=¡Quiero%20el%20Sof%C3%A1%20Aura!" },
-    ];
+    // Desplazamiento suave al botón
+    function scrollToShop() {
+      document.getElementById('gallery').scrollIntoView({ behavior: 'smooth' });
+    }
 
-    const grid = document.querySelector('.products-grid');
-    const tabs = document.querySelectorAll('.categories button');
+    document.addEventListener('DOMContentLoaded', () => {
+      // Inicializar Locomotive Scroll
+      const locoScroll = new LocomotiveScroll({
+        el: document.querySelector('[data-scroll-container]'),
+        smooth: true,
+        smartphone: { smooth: true },
+        tablet: { smooth: true }
+      });
 
-    function render(cat = 'todos') {
-      grid.innerHTML = '';
-      const lista = cat === 'todos' ? productos : productos.filter(p => p.categoria === cat);
-      lista.forEach(p => {
+      // Datos de productos
+      const productos = [
+        { nombre: "Escritorio", descripcion: "Sobre de madera maciza certificada (grosor 3 cm) con acabado mate natural.", imagen: "img/escritorio.png", enlace: "https://wa.me/50254113908?text=¡Quiero%20el%20Escritorio%20Atmosfera!" },
+        { nombre: "Modular", descripcion: "Tablero de 3 cm de grosor con acabado natural mate, que resalta la veta y aporta calidez.", imagen: "img/muebletv.png", enlace: "https://wa.me/50254113908?text=¡Quiero%20el%20Modular%20Atmosfera!" },
+        { nombre: "Tocador", descripcion: "Combina la calidez de la madera maciza con la elegancia de los metales y la suavidad de detalles femeninos.", imagen: "img/tocador.png", enlace: "https://wa.me/50254113908?text=¡Quiero%20el%20Tocador%20Atmosfera!" },
+        { nombre: "Auxiliar de Cama", descripcion: "Un pequeño mueble que marca la gran diferencia al despertar.", imagen: "img/aux.png", enlace: "https://wa.me/50254113908?text=¡Quiero%20el%20Auxiliar%20de%20Cama%20Atmosfera!" },
+        { nombre: "Cama", descripcion: "Donde cada noche despierta tus sentidos en un paraíso contemporáneo.", imagen: "img/cama.png", enlace: "https://wa.me/50254113908?text=¡Quiero%20la%20Cama%20Atmosfera!" },
+        { nombre: "Sofá", descripcion: "Donde cada conversación y momento de descanso se vive con elegancia y calidez natural.", imagen: "img/sofa.png", enlace: "https://wa.me/50254113908?text=¡Quiero%20el%20Sofa%20Atmosfera!" }
+      ];
+
+      const gallery = document.getElementById('gallery');
+      productos.forEach((p, i) => {
         const card = document.createElement('div');
-        card.className = 'product-card';
+        card.className = 'product-card fade-up';
+        card.setAttribute('data-scroll', '');
+        card.setAttribute('data-scroll-call', 'reveal');
+        card.setAttribute('data-scroll-delay', i * 100);
         card.innerHTML = `
-          <img loading="lazy" src="${p.imagen}" alt="${p.nombre}" />
+          <a href="${p.imagen}" class="glightbox" data-gallery="woodwooks">
+            <img src="${p.imagen}" alt="${p.nombre}" />
+          </a>
           <div class="product-info">
             <h3>${p.nombre}</h3>
             <p>${p.descripcion}</p>
             <a class="btn-secondary" href="${p.enlace}" target="_blank" rel="noopener">Consultar</a>
           </div>
         `;
-        grid.appendChild(card);
+        gallery.appendChild(card);
       });
-    }
 
-    tabs.forEach(btn => {
-      btn.addEventListener('click', e => {
-        tabs.forEach(b => b.classList.remove('active'));
-        e.currentTarget.classList.add('active');
-        render(e.currentTarget.dataset.cat);
+      // Inicializar GLightbox
+      GLightbox({
+        selector: '.glightbox',
+        touchNavigation: true,
+        loop: true
+      });
+
+      // Reveal al hacer scroll
+      locoScroll.on('call', (func, dir, obj) => {
+        if (func === 'reveal' && dir === 'enter') {
+          obj.el.classList.add('is-reveal');
+        }
+      });
+
+      // Actualizar scroll al cargar imágenes
+      document.querySelectorAll('img').forEach(img => {
+        img.onload = () => locoScroll.update();
       });
     });
-
-    // Inicializar vista
-    render();
   </script>
 </body>
 </html>
