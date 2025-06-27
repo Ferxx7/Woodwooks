@@ -1,172 +1,262 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Wood Wooks | Domótica & Seguridad</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@300;500&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wood Wooks | Tienda</title>
+
+  <!-- Fuentes y performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@600&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Locomotive Scroll CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.css" />
+  <!-- GLightbox CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+
   <style>
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background-color: #f6f5f2;
-      color: #2e2e2e;
+    /* Variables de diseño */
+    :root {
+      --clr-white: #ffffff;
+      --clr-gray: #f7f5f2;
+      --clr-charcoal: #333333;
+      --clr-gold: #c9a166;
+      --clr-muted: #666666;
+      --ff-heading: 'Lora', serif;
+      --ff-body: 'Montserrat', sans-serif;
+      --trans-time: 0.4s;
     }
+    /* Reset ligero */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--ff-body);
+      background: var(--clr-gray);
+      color: var(--clr-charcoal);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* Header */
     header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: rgba(0,0,0,0.8);
-      backdrop-filter: blur(6px);
-      padding: 20px 40px;
       position: sticky;
       top: 0;
       z-index: 999;
+      padding: 15px 30px;
+      background: rgba(0, 0, 0, 0.6);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    }
+    .center-header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
     }
     header img {
-      height: 60px;
+      width: 120px;
+    }
+    .cta-button {
+      position: relative;
+      padding: 10px 25px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #ffffff;
+      background: var(--clr-charcoal);
+      border: none;
+      border-radius: 45px;
+      cursor: pointer;
+      transition: all var(--trans-time) ease-in-out;
+    }
+    .cta-button:hover {
+      background: var(--clr-gold);
+      color: var(--clr-charcoal);
+      transform: scale(1.02);
+    }
+    nav {
+      display: flex;
     }
     nav a {
-      color: #ffffff;
-      margin-left: 25px;
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s;
+      font-weight: 600;
+      color: var(--clr-charcoal);
+      padding: .5rem;
+      transition: color var(--trans-time) ease;
     }
     nav a:hover {
-      color: #CB996D;
+      color: var(--clr-gold);
     }
-    h1 {
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+            url('img/banertienda.png') center top/cover no-repeat;
+      color: var(--clr-white);
       text-align: center;
-      font-family: 'Playfair Display', serif;
-      font-size: 2.8rem;
-      margin: 60px 0 20px;
-      color: #5a4736;
+      margin-top: -60px;
+      padding: 7rem 1rem 3rem;
     }
-    .productos {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 40px;
-      padding: 0 40px 60px;
+    .hero h1 {
+      font-family: var(--ff-heading);
+      font-size: 3rem;
+      margin-bottom: 1rem;
     }
-    .card {
-      background: #ffffff;
-      border-radius: 16px;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.08);
-      overflow: hidden;
-      transition: transform 0.3s ease;
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
     }
-    .card:hover {
-      transform: translateY(-5px);
-    }
-    .card img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-    }
-    .card-body {
-      padding: 20px;
-    }
-    .card-body h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
-      margin-bottom: 10px;
-      color: #7b5c3f;
-    }
-    .card-body p {
-      font-size: 0.95rem;
-      margin-bottom: 15px;
-    }
-    .precio {
-      font-size: 1.1rem;
-      font-weight: bold;
-      color: #a0714f;
-      margin-bottom: 10px;
-    }
-    .btn {
-      background-color: transparent;
-      color: #a0714f;
-      border: 1px solid #a0714f;
-      padding: 10px 24px;
-      border-radius: 40px;
-      font-size: 0.9rem;
+    .hero .btn-primary {
+      background: var(--clr-gold);
+      color: var(--clr-white);
+      border: none;
+      padding: .75rem 2rem;
+      font-size: 1rem;
       cursor: pointer;
-      transition: 0.3s ease;
-      text-decoration: none;
+      border-radius: 50px;
+      transition: transform var(--trans-time) ease;
+    }
+    .hero .btn-primary:hover {
+      transform: scale(1.05);
+    }
+
+    /* Galería / Grid de productos */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+      gap: 2rem;
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto 4rem;
+    }
+    .product-card {
+      background: var(--clr-white);
+      border-radius: .75rem;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      transition: transform var(--trans-time) ease, box-shadow var(--trans-time) ease;
+      position: relative;
+    }
+    .product-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+      loading: lazy;
+      transform: scale(1.1);
+      transition: transform var(--trans-time) ease;
+    }
+    .product-card:hover img {
+      transform: scale(1.2) translateY(-10px);
+    }
+    .product-info {
+      padding: 1.5rem;
+    }
+    .product-info h3 {
+      font-family: var(--ff-heading);
+      margin-bottom: .5rem;
+      font-size: 1.25rem;
+    }
+    .product-info p {
+      color: var(--clr-muted);
+      font-size: .95rem;
+      margin-bottom: 1rem;
+    }
+    .product-info .btn-secondary {
       display: inline-block;
+      border: 2px solid var(--clr-gold);
+      padding: .5rem 1.5rem;
+      border-radius: 999px;
+      font-weight: 600;
+      color: var(--clr-gold);
+      background: transparent;
+      transition: background var(--trans-time) ease, color var(--trans-time) ease;
     }
-    .btn:hover {
-      background-color: #a0714f;
-      color: #fff;
+    .product-info .btn-secondary:hover {
+      background: var(--clr-gold);
+      color: var(--clr-white);
     }
-    footer {
-      text-align: center;
-      font-size: 0.9rem;
-      color: #777;
-      padding: 30px;
-      background: #ece7df;
-      border-top: 1px solid rgba(0,0,0,0.06);
+
+    /* Animaciones al hacer scroll */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity var(--trans-time) ease, transform var(--trans-time) ease;
+    }
+    .fade-up.is-reveal {
+      opacity: 1;
+      transform: translateY(0);
     }
   </style>
 </head>
 <body>
   <header>
-    <img src="img/P1LOGO.png" alt="Wood Wooks Logo">
-    <nav>
-      <a href="index.html">Inicio</a>
-      <a href="Tienda.html">Tienda</a>
-      <a href="Domotica.html">Domótica</a>
-      <a href="Servicios.html">Servicios</a>
-    </nav>
-  </header>
-
-  <h1>Domótica y Seguridad Residencial</h1>
-  <p style="text-align:center; margin-bottom:40px; font-size:1rem; color:#5a4736;">Todos los precios incluyen instalación estándar y pueden variar según zona. Cada cotización es personalizada.</p>
-
-  <div class="productos">
-    <div class="card">
-      <img src="https://smarttecgt.com/cdn/shop/files/EU-Version-SONOFF-Dual-Relay-WIFI-Switch-DIY-Module-2-Gang-Timer-APP-Control-Works-with-Amazon.jpg?v=1695955306&width=1946" alt="Relé Sonoff">
-      <div class="card-body">
-        <h2>Control de Luces Inteligente</h2>
-        <p>Automatiza encendido y apagado desde tu celular. Compatible con Alexa y Google Home.</p>
-        <p class="precio">Desde Q599</p>
-        <a class="btn" href="https://wa.me/50254113908?text=Hola!%20Estoy%20interesado%20en%20el%20servicio%20de%20control%20de%20luces%20inteligente" target="_blank">Instalar ahora</a>
+      <div class="center-header">
+        <img src="img/P1LOGO.png" alt="Wood Wooks Logo" />
+        <button class="cta-button"
+          onclick="window.open('https://wa.me/50254113908?text=Hola!%20Estoy%20interesado%20en%20los%20servicios%20de%20Wood%20Wooks', '_blank')">
+          Contáctanos
+        </button>
       </div>
-    </div>
+      <nav>
+        <a href="javascript:void(0)" onclick="history.back()">Regresar</a>    </nav>
+    </header>
 
-    <div class="card">
-      <img src="https://smarttecgt.com/cdn/shop/products/ALARMACOMPLETA.jpg?v=1671478404&width=1946" alt="Sistema de Alarma">
-      <div class="card-body">
-        <h2>Alarma Residencial Inteligente</h2>
-        <p>Sensor de movimiento, puerta, app de control remoto y alertas al celular.</p>
-        <p class="precio">Desde Q1,149</p>
-        <a class="btn" href="https://wa.me/50254113908?text=Hola!%20Quiero%20una%20cotización%20para%20una%20alarma%20inteligente%20en%20mi%20hogar" target="_blank">Instalar ahora</a>
-      </div>
-    </div>
+  <section class="hero">
+    <h1>Seguridad y Domotica</h1>
+    <p>Sercios Tecnologicos.</p>
+    <button class="btn-primary" onclick="scrollToShop()">Ver Productos</button>
+  </section>
 
-    <div class="card">
-      <img src="https://smarttecgt.com/cdn/shop/products/CAMARAEXTERIOR.jpg?v=1671747412&width=1946" alt="Cámara Exterior">
-      <div class="card-body">
-        <h2>Cámaras de Seguridad WiFi</h2>
-        <p>Visualiza en vivo tu casa desde cualquier lugar. Visión nocturna y grabación en la nube.</p>
-        <p class="precio">Desde Q889</p>
-        <a class="btn" href="https://wa.me/50254113908?text=Hola!%20Quiero%20instalar%20cámaras%20de%20seguridad%20en%20mi%20residencia" target="_blank">Instalar ahora</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="https://smarttecgt.com/cdn/shop/files/6054203b1d7dcd001c8ff0c2.jpg?v=1699573326&width=1946" alt="Timbre Inteligente">
-      <div class="card-body">
-        <h2>Timbre con Cámara y Audio</h2>
-        <p>Habla con quien toque el timbre desde tu celular. Incluye detección de movimiento.</p>
-        <p class="precio">Desde Q739</p>
-        <a class="btn" href="https://wa.me/50254113908?text=Hola!%20Quiero%20instalar%20un%20timbre%20inteligente%20con%20cámara" target="_blank">Instalar ahora</a>
-      </div>
-    </div>
-  </div>
+  <main id="shop" data-scroll-container>
+    <section class="products-grid" id="gallery">
+      <!-- Tarjetas inyectadas por JS -->
+    </section>
+  </main>
 
   <footer>
-    Wood Wooks — Soluciones domóticas y seguridad con elegancia guatemalteca
+    &copy; 2025 Wood Wooks — Inspirando atmósferas desde Guatemala
   </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+  <script defer>
+    function scrollToShop() {
+      document.getElementById('gallery').scrollIntoView({ behavior: 'smooth' });
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      const locoScroll = new LocomotiveScroll({ el: document.querySelector('[data-scroll-container]'), smooth: true, smartphone: { smooth: true }, tablet: { smooth: true } });
+      const productos = [
+        { nombre: "SEGURIDAD 2 VISTAS", descripcion: "Instalación de dos cámaras de alta definición con visión diurna y nocturna, acceso remoto desde tu móvil y monitoreo en tiempo real para proteger puntos clave de tu hogar u oficina.", imagen: "img/escritorio.png", enlace: "https://wa.me/50254113908?text=¡Quiero%20el%20Escritorio%20Atmosfera!" },
+        { nombre: "SEGURIDAD 4 O MAS VISTAS", descripcion: "Sistema robusto de vigilancia con cuatro o más cámaras, grabación continua 24/7 en DVR/NVR, detección de movimiento inteligente y alertas instantáneas al dispositivo que prefieras.", imagen: "img/muebletv.png", enlace: "https://wa.me/50254113908?text=¡Quiero%20el%20Modular%20Atmosfera!" },
+        { nombre: "DOMOTICA FUNCIONAL", descripcion: "Automatización integral de tu espacio: controla luces, enchufes y aire acondicionado desde una app intuitiva, con escenas predefinidas y la opción de crear tus propios escenarios personalizados.", imagen: "img/tocador.png", enlace: "https://wa.me/50254113908?text=¡Quiero%20el%20Tocador%20Atmosfera!" },
+        { nombre: "AUTOMATIZACIONES", descripcion: "Diseño e implementación de rutinas automáticas (persianas motorizadas, sensores de presencia y ambientales), programadas para mejorar tu confort y seguridad sin que tengas que preocuparte por nada.", imagen: "img/aux.png", enlace: "https://wa.me/50254113908?text=¡Quiero%20el%20Auxiliar%20de%20Cama%20Atmosfera!" },
+      ];
+      const gallery = document.getElementById('gallery');
+      productos.forEach((p, i) => {
+        const card = document.createElement('div');
+        card.className = 'product-card fade-up';
+        card.setAttribute('data-scroll', '');
+        card.setAttribute('data-scroll-call', 'reveal');
+        card.setAttribute('data-scroll-delay', i * 100);
+        card.innerHTML = `
+          <a href="${p.imagen}" class="glightbox" data-gallery="woodwooks">
+            <img src="${p.imagen}" alt="${p.nombre}" />
+          </a>
+          <div class="product-info">
+            <h3>${p.nombre}</h3>
+            <p>${p.descripcion}</p>
+            <a class="btn-secondary" href="${p.enlace}" target="_blank" rel="noopener">Consultar</a>
+          </div>
+        `;
+        gallery.appendChild(card);
+      });
+      GLightbox({ selector: '.glightbox', touchNavigation: true, loop: true });
+      locoScroll.on('call', (func, dir, obj) => { if (func === 'reveal' && dir === 'enter') obj.el.classList.add('is-reveal'); });
+      document.querySelectorAll('img').forEach(img => img.onload = () => locoScroll.update());
+    });
+  </script>
 </body>
 </html>
