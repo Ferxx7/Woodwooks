@@ -1,3 +1,25 @@
+:root {
+  /* Colores */
+  --clr-bg-start: #000000;
+  --clr-bg-end: #1a1a1a;
+  --clr-text: #ffffff;
+  --clr-primary: #6A705D;
+  --clr-primary-trans: rgba(106,112,93,0.3);
+  --clr-primary-trans-hover: rgba(106,112,93,0.45);
+  --clr-overlay: rgba(0,0,0,0.35);
+  --clr-overlay-hover: rgba(0,0,0,0.1);
+  --clr-border-light: rgba(255,255,255,0.08);
+
+  /* Tipografía y tamaños */
+  --ff-body: 'Poppins', sans-serif;
+  --fs-base: 1rem;
+  --fs-label: 1.5rem;
+  --gap-base: 20px;
+  --radius-base: 8px;
+  --radius-pill: 45px;
+  --transition-default: 0.4s ease;
+}
+
 /* Reset y base */
 html {
   scroll-behavior: smooth;
@@ -10,9 +32,10 @@ html {
   box-sizing: border-box;
 }
 body {
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg, #000, #1a1a1a);
-  color: #fff;
+  font-family: var(--ff-body);
+  font-size: var(--fs-base);
+  background: linear-gradient(135deg, var(--clr-bg-start), var(--clr-bg-end));
+  color: var(--clr-text);
   overflow-x: hidden;
 }
 
@@ -34,10 +57,21 @@ body {
 #loader img {
   width: 150px;
   animation: fade 2s infinite;
+  will-change: opacity;
 }
 @keyframes fade {
   0%, 100% { opacity: 0; }
   50%      { opacity: 1; }
+}
+
+/* Contenedor principal */
+.main-section {
+  display: flex;
+  flex-wrap: nowrap;
+  min-height: 100vh;
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(6px);
+  overflow: hidden;
 }
 
 /* Cabecera */
@@ -51,12 +85,12 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid var(--clr-border-light);
 }
 .center-header {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: var(--gap-base);
 }
 header img {
   width: 120px;
@@ -64,14 +98,14 @@ header img {
 }
 nav {
   display: flex;
-  gap: 20px;
+  gap: var(--gap-base);
 }
 nav a {
-  color: #fff;
+  color: var(--clr-text);
   font-weight: 500;
-  font-size: 16px;
+  font-size: 1rem;
   text-decoration: none;
-  transition: color 0.3s;
+  transition: color var(--transition-default);
 }
 nav a:hover {
   color: #CB996D;
@@ -96,56 +130,79 @@ nav a:hover {
 }
 
 /* Tarjetas laterales */
-.left-section {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-.left-section div {
+.card-item {
   flex: 1;
   position: relative;
   overflow: hidden;
   cursor: pointer;
-  transition: all 0.4s ease;
+  transition: transform var(--transition-default), box-shadow var(--transition-default);
+  border: 2px solid var(--clr-primary);
+  border-radius: var(--radius-base);
+  background-clip: padding-box;
 }
-.left-section div img {
+.card-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: inherit;
 }
-.left-section div::before {
+.card-item::before {
   content: "";
   position: absolute;
   inset: 0;
-  background-color: rgba(0,0,0,0.3);
+  background-color: var(--clr-overlay);
+  border-radius: inherit;
+  transition: background var(--transition-default);
   z-index: 1;
-  transition: all 0.5s ease;
 }
-.left-section div:hover {
+.card-item:hover {
   transform: scale(1.02);
-  box-shadow: 0 0 25px rgba(203,153,109,0.5);
+  box-shadow: 0 0 30px rgba(203,153,109,0.6);
 }
-.left-section div:hover::before {
-  transform: translateX(-100%);
+.card-item:hover::before {
+  background-color: var(--clr-overlay-hover);
+}
+
+/* Etiqueta centrada */
+.card-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  font-size: calc(var(--fs-label) * 1.2); /* Aumenta el tamaño de la fuente para mayor prominencia */
+  font-weight: 700; /* Hace el texto más audaz */
+  color: var(--clr-text);
+  text-transform: uppercase;
+  letter-spacing: 2px; /* Aumenta el espaciado entre letras para una apariencia más moderna */
+  pointer-events: none;
+  text-shadow: 0 5px 15px rgba(0, 0, 0, 0.7); /* Sombra de texto más pronunciada para mejor contraste y profundidad */
+  transition: all 0.3s ease-out; /* Añade una transición suave para futuras interacciones */
+}
+
+/* Opcional: Efecto al pasar el ratón sobre la tarjeta para el título */
+.card-item:hover .card-label {
+  transform: translate(-50%, -50%) scale(1.05); /* Ligeramente más grande al pasar el ratón */
+  text-shadow: 0 8px 20px rgba(0, 0, 0, 0.9); /* Sombra más intensa al pasar el ratón */
 }
 
 /* Botón CTA */
 .cta-button {
   position: relative;
   padding: 13px 32px;
-  font-size: 15px;
+  font-size: 0.94rem;
   font-weight: 600;
-  color: #fff;
-  background: rgba(106,112,93,0.3);
-  border: 1px solid #6A705D;
-  border-radius: 45px;
+  color: var(--clr-text);
+  background: var(--clr-primary-trans);
+  border: 1px solid var(--clr-primary);
+  border-radius: var(--radius-pill);
   backdrop-filter: blur(10px);
   cursor: pointer;
   overflow: hidden;
   z-index: 1;
   text-transform: uppercase;
   letter-spacing: 1px;
-  transition: all 0.3s ease-in-out;
+  transition: all var(--transition-default);
 }
 .cta-button::before {
   content: '';
@@ -169,20 +226,20 @@ nav a:hover {
   100% { transform: translateX(100%)  rotate(25deg); }
 }
 .cta-button:hover {
-  background: rgba(106,112,93,0.45);
+  background: var(--clr-primary-trans-hover);
   box-shadow: 0 0 20px rgba(106,112,93,0.5);
   transform: scale(1.02);
 }
 
 /* Pie de página */
 footer {
-  background-color: rgba(106,112,93,0.7);
+  background-color: var(--clr-primary-trans);
   backdrop-filter: blur(10px);
-  color: #fff;
+  color: var(--clr-text);
   text-align: center;
   padding: 12px 0;
-  font-size: 14px;
-  border-top: 1px solid rgba(255,255,255,0.08);
+  font-size: 0.875rem;
+  border-top: 1px solid var(--clr-border-light);
 }
 
 /* Responsive móvil */
@@ -207,13 +264,11 @@ footer {
     opacity: 1 !important;
     transform: translateY(0) !important;
   }
-  .left-section {
+  .card-item {
     order: 2;
     width: 100%;
     flex-direction: column;
-  }
-  .left-section div {
-    height: 200px;
     margin-bottom: 12px;
+    height: 200px;
   }
 }
