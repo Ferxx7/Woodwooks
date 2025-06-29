@@ -92,7 +92,7 @@
     /* Hero */
     .hero {
       background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
-            url('img/banertienda.png') center top/cover no-repeat;
+            url('img/domoticaback.png') center top/cover no-repeat;
       color: var(--clr-white);
       text-align: center;
       margin-top: -60px;
@@ -192,16 +192,12 @@
 </head>
 <body>
   <header>
-      <div class="center-header">
-        <img src="img/P1LOGO.png" alt="Wood Wooks Logo" />
-        <button class="cta-button"
-          onclick="window.open('https://wa.me/50254113908?text=Hola!%20Estoy%20interesado%20en%20los%20servicios%20de%20Wood%20Wooks', '_blank')">
-          Contáctanos
-        </button>
-      </div>
-      <nav>
-        <a href="javascript:void(0)" onclick="history.back()">Regresar</a>    </nav>
-    </header>
+    <div class="center-header">
+      <img src="img/P1LOGO.png" alt="Wood Wooks Logo" />
+    </div>
+    <button class="cta-button" onclick="history.back()">Regresar</button>
+  </header>
+
 
   <section class="hero">
     <h1>Seguridad y Domotica</h1>
@@ -229,10 +225,9 @@
     document.addEventListener('DOMContentLoaded', () => {
       const locoScroll = new LocomotiveScroll({ el: document.querySelector('[data-scroll-container]'), smooth: true, smartphone: { smooth: true }, tablet: { smooth: true } });
       const productos = [
+        { nombre: "DOMOTICA FUNCIONAL", descripcion: "Automatización integral de tu espacio: controla luces, enchufes y aire acondicionado desde una app intuitiva, con escenas predefinidas y la opción de crear tus propios escenarios personalizados.", imagen: "img/tocador.png", enlace: "https://wa.me/50254113908?text=¡Quiero%20el%20Tocador%20Atmosfera!" },
         { nombre: "SEGURIDAD 2 VISTAS", descripcion: "Instalación de dos cámaras de alta definición con visión diurna y nocturna, acceso remoto desde tu móvil y monitoreo en tiempo real para proteger puntos clave de tu hogar u oficina.", imagen: "img/escritorio.png", enlace: "https://wa.me/50254113908?text=¡Quiero%20el%20Escritorio%20Atmosfera!" },
         { nombre: "SEGURIDAD 4 O MAS VISTAS", descripcion: "Sistema robusto de vigilancia con cuatro o más cámaras, grabación continua 24/7 en DVR/NVR, detección de movimiento inteligente y alertas instantáneas al dispositivo que prefieras.", imagen: "img/muebletv.png", enlace: "https://wa.me/50254113908?text=¡Quiero%20el%20Modular%20Atmosfera!" },
-        { nombre: "DOMOTICA FUNCIONAL", descripcion: "Automatización integral de tu espacio: controla luces, enchufes y aire acondicionado desde una app intuitiva, con escenas predefinidas y la opción de crear tus propios escenarios personalizados.", imagen: "img/tocador.png", enlace: "https://wa.me/50254113908?text=¡Quiero%20el%20Tocador%20Atmosfera!" },
-        { nombre: "AUTOMATIZACIONES", descripcion: "Diseño e implementación de rutinas automáticas (persianas motorizadas, sensores de presencia y ambientales), programadas para mejorar tu confort y seguridad sin que tengas que preocuparte por nada.", imagen: "img/aux.png", enlace: "https://wa.me/50254113908?text=¡Quiero%20el%20Auxiliar%20de%20Cama%20Atmosfera!" },
       ];
       const gallery = document.getElementById('gallery');
       productos.forEach((p, i) => {
