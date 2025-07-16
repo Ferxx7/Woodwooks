@@ -8,21 +8,21 @@
   <meta name="author" content="Wood Wooks" />
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#6A705D" />
-  <title>Wood Wooks | Muebles Personalizados</title>
+  <title>Wood Wooks | Tienda y Servicios</title>
 
-  <!-- Preload recursos críticos -->
-  <link rel="preload" href="img/LOADER.jpg" as="image" />
-  <link rel="preload" href="VIDEO/P1VIDEO.mp4" as="video" type="video/mp4" />
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" as="style" />
+  <!-- Fuentes y preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
 
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
-    rel="stylesheet"
-  />
-
+  <!-- CSS Externo -->
   <style>
-    html {
-      scroll-behavior: smooth;
+    :root {
+      --ff-base: 'Poppins', sans-serif;
+      --clr-bg-gradient: linear-gradient(135deg, #000, #1a1a1a);
+      --clr-accent: #CB996D;
+      --clr-button-bg: rgba(106, 112, 93, 0.3);
+      --clr-button-hover: rgba(106, 112, 93, 0.45);
     }
 
     *, *::before, *::after {
@@ -31,39 +31,26 @@
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #000, #1a1a1a);
+      font-family: var(--ff-base);
+      background: var(--clr-bg-gradient);
       color: #fff;
       overflow-x: hidden;
     }
 
-    /* Loader */
-    #loader {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      transition: opacity 0.5s ease, visibility 0.5s ease;
-    }
-
-    #loader.hidden {
+    /* Animación de entrada sofisticada */
+    .main-content {
       opacity: 0;
-      visibility: hidden;
+      filter: blur(10px);
+      animation: fadeIn 4s ease-out 0.5s forwards;
     }
-
-    #loader img {
-      width: 150px;
-      animation: fade 2s infinite;
-    }
-
-    @keyframes fade {
-      0%, 100% { opacity: 0; }
-      50% { opacity: 1; }
+    @keyframes fadeIn {
+      from { opacity: 0; filter: blur(500px); }
+      to   { opacity: 1; filter: blur(0); }
     }
 
     header {
@@ -78,13 +65,11 @@
       align-items: center;
       border-bottom: 1px solid rgba(255,255,255,0.08);
     }
-
     .center-header {
       display: flex;
       align-items: center;
       gap: 20px;
     }
-
     header img {
       width: 120px;
       filter: drop-shadow(0 0 3px rgba(255,255,255,0.2));
@@ -96,7 +81,7 @@
       font-size: 15px;
       font-weight: 600;
       color: #ffffff;
-      background: rgba(106, 112, 93, 0.3);
+      background: var(--clr-button-bg);
       border: 1px solid #6A705D;
       border-radius: 45px;
       backdrop-filter: blur(10px);
@@ -107,20 +92,16 @@
       letter-spacing: 1px;
       transition: all 0.3s ease-in-out;
     }
-
     .cta-button:hover {
-      background: rgba(106, 112, 93, 0.45);
+      background: var(--clr-button-hover);
       box-shadow: 0 0 20px rgba(106, 112, 93, 0.5);
       transform: scale(1.02);
     }
-
     .cta-button::before {
       content: '';
       position: absolute;
-      top: -50%;
-      left: -75%;
-      width: 200%;
-      height: 200%;
+      top: -50%; left: -75%;
+      width: 200%; height: 200%;
       background: linear-gradient(
         120deg,
         rgba(255, 255, 255, 0) 0%,
@@ -131,7 +112,6 @@
       animation: shimmer 7s linear infinite;
       z-index: 0;
     }
-
     @keyframes shimmer {
       0% { transform: translateX(-100%) rotate(25deg); }
       100% { transform: translateX(100%) rotate(25deg); }
@@ -141,7 +121,6 @@
       display: flex;
       gap: 20px;
     }
-
     nav a {
       color: #ffffff;
       font-weight: 500;
@@ -149,76 +128,83 @@
       font-size: 16px;
       transition: color 0.3s;
     }
-
     nav a:hover {
-      color: #CB996D;
+      color: var(--clr-accent);
     }
 
+    /* Sección principal */
     .main-section {
       display: flex;
-      flex-wrap: nowrap;
-      min-height: 100vh;
       background: rgba(255, 255, 255, 0.03);
       backdrop-filter: blur(6px);
-      overflow: hidden;
+      min-height: 100vh;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      padding: 40px 20px;
     }
 
+    /* Video y tarjetas */
     .video-section {
-      flex: 1;
-      width: 50%;
-      opacity: 0;
-      transform: translateY(-30px);
-      transition: all 1.2s ease;
+      flex: 1 1 400px;
+      max-width: 600px;
+      height: auto;
     }
-
-    .video-section.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
     .video-section video {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      border-radius: 10px;
     }
 
     .left-section {
-      flex: 1;
       display: flex;
-      flex-direction: column;
+      justify-content: center;
+      gap: 20px;
+      flex: 1 1 300px;
+      flex-wrap: wrap;
+      max-width: 800px;
+      margin: 0 auto;
     }
-
-    .left-section div {
-      flex: 1;
+    .left-card {
+      flex: 0 1 calc(50% - 10px);
       position: relative;
       overflow: hidden;
       cursor: pointer;
-      transition: all 0.4s ease;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      border-radius: 8px;
     }
-
-    .left-section div:hover {
+    .left-card:hover {
       transform: scale(1.02);
       box-shadow: 0 0 25px rgba(203, 153, 109, 0.5);
     }
-
-    .left-section div img {
+    .left-card img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
-
-    .left-section div::before {
+    .left-card::before {
       content: "";
       position: absolute;
       top: 0; left: 0;
       width: 100%; height: 100%;
       background-color: rgba(0, 0, 0, 0.3);
+      transition: transform 0.5s ease;
       z-index: 1;
-      transition: all 0.5s ease;
     }
-
-    .left-section div:hover::before {
+    .left-card:hover::before {
       transform: translateX(-100%);
+    }
+    .card-label {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      color: #fff;
+      font-size: 25px;
+      font-weight: bold;
+      text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+      z-index: 2;
     }
 
     footer {
@@ -231,105 +217,53 @@
       border-top: 1px solid rgba(255,255,255,0.08);
     }
 
-    /* ✅ Responsivo móvil */
-    @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      nav {
-        justify-content: center;
-        flex-wrap: wrap;
-        margin-top: 10px;
-      }
-
-      .main-section {
-        flex-direction: column;
-        height: auto;
-      }
-
-      .video-section {
-        order: 1;
-        width: 100%;
-        height: 50vh;
-        opacity: 1 !important;
-        transform: translateY(0) !important;
-      }
-
+    /* Responsivo móvil */
+    @media (max-width: 480px) {
+      header { flex-direction: column; text-align: center; padding: 10px; }
+      nav { justify-content: center; gap: 10px; margin-top: 8px; }
+      .main-section { padding: 20px 10px; gap: 10px; }
+      .video-section { order: 1; flex: 1 1 100%; max-width: 100%; height: 200px; }
       .left-section {
         order: 2;
-        width: 100%;
-        flex-direction: column;
+        flex: 1 1 100%;
+        gap: 10px;
+        justify-content: center;
       }
-
-      .left-section div {
-        height: 200px;
-        margin-bottom: 12px;
-      }
+      .left-card { flex: 0 1 calc(50% - 5px); min-width: 100px; aspect-ratio: 1; }
     }
   </style>
 </head>
-
 <body>
-  <!-- Loader -->
-  <div id="loader">
-    <img src="img/LOGOBLANCO.jpg" height="200px" width="4000px" alt="Cargando..." />
-  </div>
-
-  <!-- Main Content -->
   <div class="main-content">
     <header>
       <div class="center-header">
         <img src="img/P1LOGO.png" alt="Wood Wooks Logo" />
-        <button class="cta-button"
-          onclick="window.open('https://wa.me/50254113908?text=Hola! Estoy interesado en los servicios de Wood Wooks', '_blank')">
+        <button class="cta-button" onclick="window.open('https://wa.me/50254113908?text=Hola!%20Estoy%20interesado%20en%20los%20servicios%20de%20Wood%20Wooks','_blank')">
           Contáctanos
         </button>
       </div>
       <nav>
         <a href="Tienda.html">Tienda</a>
-        <a href="domotica.html">Domótica</a>
         <a href="Servicios.html">Servicios</a>
       </nav>
     </header>
 
     <div class="main-section">
       <div class="video-section" id="animated-video">
-        <video autoplay muted loop playsinline preload="metadata" poster="img/P1DERECHA.jpg">
+        <video autoplay muted loop playsinline preload="metadata">
           <source src="VIDEO/P1VIDEO.mp4" type="video/mp4" />
           Tu navegador no soporta videos.
         </video>
       </div>
 
       <div class="left-section">
-        <div onclick="window.location.href='Tienda.html'">
+        <div class="left-card" onclick="window.location.href='Tienda.html'">
           <img loading="lazy" src="img/shoppagprincipal.png" alt="Ir a la Tienda" />
-            <span class="card-label" style="
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: #fff;
-            font-size: 18px;
-            font-weight: bold;
-            text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
-            z-index: 2;
-            ">Tienda</span>
+          <span class="card-label">Tienda</span>
         </div>
-        <div onclick="window.location.href='Servicios.html'">
-          <img loading="lazy" src="img/serviciosinicio.png" alt="Diseños Personalizados" />
-          <span class="card-label" style="
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: #fff;
-            font-size: 18px;
-            font-weight: bold;
-            text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
-            z-index: 2;
-          ">Servicios</span>
+        <div class="left-card" onclick="window.location.href='Servicios.html'">
+          <img loading="lazy" src="img/serviciosinicio.png" alt="Servicios Wood Wooks" />
+          <span class="card-label">Servicios</span>
         </div>
       </div>
     </div>
@@ -338,28 +272,5 @@
       <p>100% guatemaltecos - Hecho con orgullo</p>
     </footer>
   </div>
-
-  <!-- JS optimizado: defer y uso de loadeddata en lugar de timeout -->
-  <script defer>
-    const loader = document.getElementById("loader");
-    const video  = document.querySelector("#animated-video video");
-
-    window.addEventListener("load", () => {
-      if (video.readyState >= 3) {
-        hideLoader();
-      } else {
-        video.addEventListener("loadeddata", hideLoader);
-      }
-    });
-
-    function hideLoader() {
-      loader.classList.add("hidden");
-      document.getElementById("animated-video").classList.add("show");
-
-      loader.addEventListener("transitionend", () => {
-        window.scrollBy({ top: 80, behavior: "smooth" });
-      });
-    }
-  </script>
 </body>
 </html>
