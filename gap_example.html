@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo de CSS Gap</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        h1,
+        h2 {
+            color: #0056b3;
+        }
+
+        .container {
+            border: 2px solid #007bff;
+            padding: 15px;
+            margin-bottom: 30px;
+            background-color: #fff;
+            border-radius: 8px;
+        }
+
+        .item {
+            background-color: #e0f7fa;
+            border: 1px solid #00bcd4;
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+
+        /* Flexbox Example */
+        .flex-container {
+            display: flex;
+            flex-wrap: wrap;
+            /* Permite que los elementos salten de línea */
+            gap: 20px;
+            /* Aplica 20px de espacio entre filas y columnas */
+            /* gap: 10px 30px; /* Ejemplo de gap diferente para filas y columnas */
+        }
+
+        .flex-item {
+            flex: 1 1 calc(33.33% - 20px);
+            /* Para 3 columnas con gap */
+            min-width: 100px;
+            /* Asegura que no se hagan demasiado pequeños */
+        }
+
+        /* Grid Example */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            /* Columnas responsivas */
+            gap: 15px 10px;
+            /* 15px entre filas, 10px entre columnas */
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Demostración de la propiedad `gap` en CSS</h1>
+
+    <h2>Ejemplo con Flexbox</h2>
+    <div class="container flex-container">
+        <div class="item flex-item">Elemento Flex 1</div>
+        <div class="item flex-item">Elemento Flex 2</div>
+        <div class="item flex-item">Elemento Flex 3</div>
+        <div class="item flex-item">Elemento Flex 4</div>
+        <div class="item flex-item">Elemento Flex 5</div>
+        <div class="item flex-item">Elemento Flex 6</div>
+    </div>
+
+    <h2>Ejemplo con CSS Grid</h2>
+    <div class="container grid-container">
+        <div class="item">Elemento Grid 1</div>
+        <div class="item">Elemento Grid 2</div>
+        <div class="item">Elemento Grid 3</div>
+        <div class="item">Elemento Grid 4</div>
+        <div class="item">Elemento Grid 5</div>
+        <div class="item">Elemento Grid 6</div>
+        <div class="item">Elemento Grid 7</div>
+        <div class="item">Elemento Grid 8</div>
+    </div>
+
+</body>
+
+</html>
