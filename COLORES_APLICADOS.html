@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paleta de Colores - Wooks</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #F2EDDE 0%, #fff 100%);
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #546387;
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #827E63;
+            margin-bottom: 40px;
+            font-size: 1.2rem;
+        }
+        
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .color-card {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .color-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .color-preview {
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .color-info {
+            padding: 20px;
+            background: white;
+        }
+        
+        .color-name {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #546387;
+        }
+        
+        .color-code {
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+            color: #827E63;
+            margin-bottom: 5px;
+        }
+        
+        .color-usage {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 10px;
+            line-height: 1.6;
+        }
+        
+        .examples-section {
+            margin-top: 50px;
+        }
+        
+        .examples-title {
+            font-size: 2rem;
+            color: #546387;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .example-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .btn-example {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #827E63 0%, #A4623E 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(130, 126, 99, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(130, 126, 99, 0.4);
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(130, 126, 99, 0.3);
+            color: #546387;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(130, 126, 99, 0.1);
+            border-color: #827E63;
+            transform: translateY(-3px);
+        }
+        
+        .card-example {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(130, 126, 99, 0.2);
+            margin-top: 20px;
+        }
+        
+        .card-example h3 {
+            color: #546387;
+            margin-bottom: 15px;
+        }
+        
+        .card-example p {
+            color: #546387;
+            line-height: 1.6;
+        }
+        
+        .gradient-example {
+            height: 150px;
+            border-radius: 15px;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .gradient-1 {
+            background: linear-gradient(135deg, #546387 0%, #827E63 100%);
+        }
+        
+        .gradient-2 {
+            background: linear-gradient(135deg, #827E63 0%, #A4623E 100%);
+        }
+        
+        .gradient-3 {
+            background: linear-gradient(135deg, #546387 0%, #A4623E 100%);
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .color-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 Nueva Paleta de Colores - Wooks</h1>
+        <p class="subtitle">Colores aplicados en todo el sitio web</p>
+        
+        <div class="color-grid">
+            <!-- Color 1 -->
+            <div class="color-card">
+                <div class="color-preview" style="background: #546387;">
+                    #546387
+                </div>
+                <div class="color-info">
+                    <div class="color-name">Azul/Morado Oscuro</div>
+                    <div class="color-code">#546387</div>
+                    <div class="color-code">RGB(84, 99, 135)</div>
+                    <div class="color-usage">
+                        <strong>Uso:</strong> Textos principales, fondos oscuros, navegación, títulos, footer, elementos de énfasis
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Color 2 -->
+            <div class="color-card">
+                <div class="color-preview" style="background: #827E63;">
+                    #827E63
+                </div>
+                <div class="color-info">
+                    <div class="color-name">Beige/Café</div>
+                    <div class="color-code">#827E63</div>
+                    <div class="color-code">RGB(130, 126, 99)</div>
+                    <div class="color-usage">
+                        <strong>Uso:</strong> Color secundario, botones, iconos, precios, acentos, bordes, elementos interactivos
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Color 3 -->
+            <div class="color-card">
+                <div class="color-preview" style="background: #A4623E;">
+                    #A4623E
+                </div>
+                <div class="color-info">
+                    <div class="color-name">Naranja/Terracota</div>
+                    <div class="color-code">#A4623E</div>
+                    <div class="color-code">RGB(164, 98, 62)</div>
+                    <div class="color-usage">
+                        <strong>Uso:</strong> Acentos, estados hover, llamadas a la acción, gradientes, highlights
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Color 4 -->
+            <div class="color-card">
+                <div class="color-preview" style="background: #F2EDDE; color: #546387;">
+                    #F2EDDE
+                </div>
+                <div class="color-info">
+                    <div class="color-name">Beige Claro/Crema</div>
+                    <div class="color-code">#F2EDDE</div>
+                    <div class="color-code">RGB(242, 237, 222)</div>
+                    <div class="color-usage">
+                        <strong>Uso:</strong> Fondos claros, áreas de contenido, backgrounds de secciones, espacios en blanco
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="examples-section">
+            <h2 class="examples-title">📐 Ejemplos de Aplicación</h2>
+            
+            <h3 style="color: #546387; margin-bottom: 15px;">Botones</h3>
+            <div class="example-row">
+                <button class="btn-example btn-primary">Botón Primario</button>
+                <button class="btn-example btn-secondary">Botón Secundario</button>
+            </div>
+            
+            <h3 style="color: #546387; margin: 30px 0 15px;">Tarjetas</h3>
+            <div class="card-example">
+                <h3>Tarjeta de Ejemplo</h3>
+                <p>Esta tarjeta usa la nueva paleta de colores con bordes en #827E63, texto en #546387 y fondo en crema #F2EDDE.</p>
+            </div>
+            
+            <h3 style="color: #546387; margin: 30px 0 15px;">Gradientes</h3>
+            <div class="gradient-example gradient-1">
+                Gradiente 1: #546387 → #827E63
+            </div>
+            <div class="gradient-example gradient-2">
+                Gradiente 2: #827E63 → #A4623E
+            </div>
+            <div class="gradient-example gradient-3">
+                Gradiente 3: #546387 → #A4623E
+            </div>
+        </div>
+        
+        <div style="margin-top: 50px; padding: 30px; background: linear-gradient(135deg, rgba(84, 99, 135, 0.1) 0%, rgba(242, 237, 222, 0.5) 100%); border-radius: 15px; text-align: center;">
+            <h3 style="color: #546387; margin-bottom: 15px;">✅ Actualización Completa</h3>
+            <p style="color: #546387; line-height: 1.8;">
+                La nueva paleta de colores ha sido aplicada en:<br>
+                <strong>✓</strong> Página principal (index.html)<br>
+                <strong>✓</strong> Página de domótica (domotica.html)<br>
+                <strong>✓</strong> Todos los estilos CSS (styles.css y css/styles.css)<br>
+                <strong>✓</strong> Botones, tarjetas, gradientes y elementos interactivos
+            </p>
+        </div>
+    </div>
+</body>
+</html>
+
